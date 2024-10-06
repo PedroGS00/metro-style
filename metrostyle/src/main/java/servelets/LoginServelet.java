@@ -1,7 +1,6 @@
 package servelets;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,20 +36,22 @@ public class LoginServelet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-			String login = request.getParameter("login");
-			String senha = request.getParameter("senha");
-			
-			HttpSession sessao = request.getSession();
-			
-			if(login.equals("admin") && senha.equals("1234")) {
-				sessao.setAttribute("login", login);
-				request.getRequestDispatcher("index.jsp").forward(request, response);
-				}
-			else {
-				request.setAttribute("falha", "Login ou Senha inválidos");
-				request.getRequestDispatcher("login-form.jsp").forward(request, response);
-				}
 		
+		String login = request.getParameter("login");
+		String senha = request.getParameter("senha");
+			
+		HttpSession sessao = request.getSession();
+			
+		if(login.equals("admin") && senha.equals("1234")) 
+		{
+			sessao.setAttribute("login", login);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		}
+		else 
+		{
+			request.setAttribute("falha", "Login ou Senha inválidos");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		}
 	}
 
 }
