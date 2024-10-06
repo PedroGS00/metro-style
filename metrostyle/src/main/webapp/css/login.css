@@ -1,33 +1,12 @@
-@charset "UTF-8";
-
-body {
-    margin: 0;
-    background-color: #000;
-    overflow: hidden;
-
-}
-
-.navbar {
-    margin-top: 60px;
-    display: flex;
-    text-align: center;
-    align-items: center;
+body{
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
     justify-content: center;
-    gap: 300px;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-}
-
-.navbar a:hover {
-    text-decoration: underline;
+    align-items: center;
 }
 
 .login-container {
-    height: 80vh;
-    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,7 +25,6 @@ form {
     background: linear-gradient(135deg, #E0E0E0, #DBDBDB, #C1C1C1, #999999);
     box-sizing: border-box;
     text-align: center;
-
 }
 
 h2 {
@@ -70,30 +48,6 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #555;
-}
-
-.sidebar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 70px;
-    height: 100%;
-    background-color: #7a9ebb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    color: white;
-    font-weight: bold;
-    font-size: 28px;
-    letter-spacing: 30px;
-    color: #000;
-}
-
-h1 {
-    color: white;
-    text-align: center;
 }
 
 img{

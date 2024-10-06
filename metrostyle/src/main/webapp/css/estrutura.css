@@ -1,0 +1,51 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    left: 0;
+}
+
+body {
+    background: black;
+}
+
+header{
+    margin-bottom: 20px;
+}
+
+.navbar {
+    margin-top: 60px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 100%;
+    background-color: #7a9ebb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+    letter-spacing: 30px;
+    color: #000;
+}
