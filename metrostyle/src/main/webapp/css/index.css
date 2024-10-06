@@ -1,0 +1,25 @@
+img{
+    width: 100%;
+}
+
+.lista-tenis{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+}
+ 
+.box-tenis{
+    width: 250px;
+    padding: 10px;
+    color: white;
+}
+ 
+#nome{
+    padding-top: 10px;
+}
+ 
+#modelo{
+    color: rgb(88, 88, 88);
+}
