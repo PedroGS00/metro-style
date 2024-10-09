@@ -27,7 +27,7 @@
                 .
             </div>
             <div class="navbar-itens">
-                <a href="/index.jsp">HOME</a>
+                <a href="../index.jsp">HOME</a>
                 <a href="#">PRODUTOS</a>
                 <a href="#">CLIENTES</a>
                 <a href="#">CONTATO</a>
