@@ -17,7 +17,7 @@
 				if(login.equals("admin") && senha.equals("1234"))
 				{
 					session.setAttribute("login",login);
-					response.sendRedirect("index.jsp");
+					response.sendRedirect("../index.jsp");
 				}
 				else
 				{

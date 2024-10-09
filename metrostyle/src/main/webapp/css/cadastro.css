@@ -6,7 +6,7 @@ body{
     align-items: center;
 }
 
-.login-container {
+.cadastro-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,17 +33,17 @@ h2 {
     font-size: 30px;
 }
 
-.sem-conta a{
+.com-conta a{
     color: black;
     font-weight: bolder;
     text-decoration: none;
 }
 
-.sem-conta a:hover{
+.com-conta a:hover{
     text-decoration: underline;
 }
 
-.sem-conta{
+.com-conta{
     margin: 20px;
 }
 
@@ -55,7 +55,7 @@ input[type="password"] {
     padding: 10px;
 }
 
-.login-campo{
+.cadastro-campo{
     display: flex;
     flex-direction: column;
     gap: 2px;
@@ -80,16 +80,15 @@ input[type="submit"]:hover {
     font-size: 15px;
 }
 
-.social-login{
+.social-cadastro{
     padding: 20px;
     display: flex;
     gap: 30px;
 }
 
-.social-login img{
+.social-cadastro img{
     width: 30px;
     background-color: white;
     padding: 7px;
     border-radius: 10px;
 }
-

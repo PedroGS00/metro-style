@@ -5,6 +5,10 @@
     left: 0;
 }
 
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
     background: black;
 }
@@ -29,6 +33,27 @@ header{
 
 .navbar a:hover {
     text-decoration: underline;
+}
+
+.navbar-itens{
+    display: flex;
+    gap: 80px;
+}
+
+.navbar-img{
+    display: flex;
+    gap: 20px;
+}
+
+.navbar-img img{
+    max-width: 50px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navbar-img img:hover{
+    transform: scale(1.04);
 }
 
 .sidebar {
