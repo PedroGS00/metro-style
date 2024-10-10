@@ -45,8 +45,15 @@ public class LoginServelet extends HttpServlet {
 		if(login.equals("admin") && senha.equals("1234")) 
 		{
 			sessao.setAttribute("login", login);
+			request.getRequestDispatcher("adm-manutencao.jsp").forward(request, response);
+		}
+		
+		else if(login.equals("usuario") && senha.equals("1234"))
+		{
+			sessao.setAttribute("login", login);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
+	
 		else 
 		{
 			request.setAttribute("falha", "Login ou Senha inválidos");

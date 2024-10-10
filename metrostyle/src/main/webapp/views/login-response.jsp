@@ -17,12 +17,11 @@
 				if(login.equals("admin") && senha.equals("1234"))
 				{
 					session.setAttribute("login",login);
+					response.sendRedirect("../adm-manutencao.jsp");
+				}
+				else if (login.equals("usuario") && senha.equals("1234"))
+					session.setAttribute("login",login);
 					response.sendRedirect("../index.jsp");
-				}
-				else
-				{
-					response.sendRedirect("login.jsp");
-				}
 			}
 			else
 			{
