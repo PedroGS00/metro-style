@@ -31,7 +31,8 @@
                     <div class="navbar-itens">
                         <a href="../index.jsp">HOME</a>
                         <a href="./produtos.jsp">PRODUTOS</a>
-                        <a href="#">CONTATO</a>
+                        <a href="./sobre.jsp">SOBRE</a>
+                        <a href="./contato.jsp">CONTATO</a>
                     </div>
                     <div class="navbar-img">
                         <a href="#"><img src="../imgs/carrinho1.png" alt=""></a>
@@ -44,7 +45,7 @@
                     <form action="./login-response.jsp" method="post">
                         <h2>Logue-se na Metro Style</h2>
                         <div class="login-campo">
-                            <input type="text" name="login" placeholder="E-mail" required>
+                            <input type="text" name="login" placeholder="Usuário" required>
                             <input type="password" name="senha" placeholder="Senha" required>
                         </div>
                         <input type="submit" value="ENTRAR">

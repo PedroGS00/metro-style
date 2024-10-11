@@ -49,7 +49,8 @@
 						<div class="navbar-itens-f">
 							<a href="../index.jsp">HOME</a>
 							<a href="./produtos.jsp">PRODUTOS</a>
-							<a href="#">CONTATO</a>
+							<a href="./sobre.jsp">SOBRE</a>
+							<a href="./contato.jsp">CONTATO</a>
 						</div>
 						<a href="../adm-manutencao.jsp"><img id="sair" src="../imgs/logout.png" alt=""></a>
 					</div>

@@ -22,7 +22,8 @@
 					<div class="navbar-itens">
 						<a href="index.jsp">HOME</a>
 						<a href="./views/produtos.jsp">PRODUTOS</a>
-						<a href="#">CONTATO</a>
+						<a href="./views/sobre.jsp">SOBRE</a>
+						<a href="./views/contato.jsp">CONTATO</a>
 					</div>
 					<div class="navbar-img">
 						<a href="#"><img src="./imgs/carrinho1.png" alt=""></a>
