@@ -44,7 +44,7 @@
                 <main>
                     <div class="cadastro-container">
                         <form action="./cadastro-response.jsp" method="post">
-                            <h2>Logue-se na Metro Style</h2>
+                            <h2>Cadastre-se na Metro Style</h2>
                             <div class="cadastro-campo">
                                 <input type="text" name="usuario" placeholder="Nome de Usuário" required>
                                 <input type="text" name="cadastro" placeholder="E-mail" required>
