@@ -2,14 +2,14 @@ main{
     flex-grow: 1;
 }
 
-img{
-    width: 100%;
-    border-radius: 20px;
-}
-
-.container-tenis{
+.container{
     display: flex;
     justify-content: center;
+}
+
+.container img{
+    width: 100%;
+    border-radius: 20px;
 }
 
 .mais-pop{

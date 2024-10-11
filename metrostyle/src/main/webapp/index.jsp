@@ -31,9 +31,9 @@
 					</div>
 				</div>
 			</header>
-			
+
 			<main>
-				<div class="container-tenis">
+				<div class="container">
 					<div class="mais-pop">
 						<h1>Mais Populares</h1>
 						<div class="lista-tenis">
