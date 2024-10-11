@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>Metrô Style | Manutenção de Cliente</title>
 		<link rel="stylesheet" type="text/css"  href="../css/estruturaMan.css">
+        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
 	</head>
 	<body>
 
@@ -25,8 +26,14 @@
 					Nome: <input type="text" name="nome" required><br>
 					Email: <input type="email" name="email" required><br>
 					Telefone: <input type="text" name="telefone" required><br>
-					Endereço: <input type="text" name="endereco" required><br> <!-- Novo Campo -->
+					Endereço: <input type="text" name="endereco" required><br> 
 					<input type="submit" value="Cadastrar">
+				</form>
+
+				<h2>Lista de Clientes</h2>
+				<form action="ClienteServlet" method="get">
+					<input type="hidden" name="action" value="listar">
+					<input type="submit" value="Listar Clientes">
 				</form>
 			</div>
 		</div>

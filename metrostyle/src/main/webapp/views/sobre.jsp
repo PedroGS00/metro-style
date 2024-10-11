@@ -8,6 +8,8 @@
         <title>Metrô Style | Sobre</title>
         <link rel="stylesheet" type="text/css"  href="../css/contato.css">
         <link rel="stylesheet" type="text/css"  href="../css/estruturaNav.css">
+        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+        
     </head>
 
     <body>

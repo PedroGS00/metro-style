@@ -8,6 +8,8 @@
         <title>Metrô Style | Produtos</title>
         <link rel="stylesheet" type="text/css"  href="../css/produtos.css">
         <link rel="stylesheet" type="text/css"  href="../css/estruturaNav.css">
+        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+        
     </head>
 
     <body>

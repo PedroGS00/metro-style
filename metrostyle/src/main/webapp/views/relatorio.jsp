@@ -6,6 +6,8 @@
 		<meta charset="UTF-8">
 		<title>Relatórios de produtos </title>
 		<link rel="stylesheet" href="../css/estruturaMan.css">
+		<link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+		
 	</head>
 
 	<body>

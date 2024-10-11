@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Relatorio Resumido</title>
+		<link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+
 </head>
 <body>
 
@@ -30,10 +32,9 @@
         </tr>
         <tr>
             <td>001</td>
-            <td>10/10/2024</td>
+            <td>11/10/2024</td>
             <td>R$ 200,00</td>
         </tr>
-        <!-- Repetir para cada venda -->
     </table>
 
     <br>

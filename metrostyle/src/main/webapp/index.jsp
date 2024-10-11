@@ -8,6 +8,8 @@
         <title>Metrô Style | Ínicio</title>
         <link rel="stylesheet" type="text/css"  href="./css/index.css">
         <link rel="stylesheet" type="text/css"  href="./css/estruturaNav.css">
+		<link rel="shortcut icon" type="imagex/png" href="./imgs/icon.png">
+		
     </head>
 
     <body>
@@ -31,9 +33,9 @@
 					</div>
 				</div>
 			</header>
-
+			
 			<main>
-				<div class="container">
+				<div class="container-tenis">
 					<div class="mais-pop">
 						<h1>Mais Populares</h1>
 						<div class="lista-tenis">

@@ -8,6 +8,8 @@
         <title>Metrô Style | Login</title>
         <link rel="stylesheet" href="../css/login.css">
         <link rel="stylesheet" href="../css/estruturaNav.css">
+        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+        
     </head>
 
     <!-- <%

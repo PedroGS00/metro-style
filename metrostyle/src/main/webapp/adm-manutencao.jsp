@@ -8,6 +8,8 @@
         <title>Metrô Style | Administração</title>
         <link rel="stylesheet" type="text/css"  href="./css/estruturaNav.css">
         <link rel="stylesheet" type="text/css"  href="./css/adm-manutencao.css">
+        <link rel="shortcut icon" type="imagex/png" href="./imgs/icon.png">
+        
     </head>
 
     <body>

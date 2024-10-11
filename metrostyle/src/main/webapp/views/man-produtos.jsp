@@ -6,6 +6,7 @@
 		<meta charset="UTF-8">
 		<title>Metrô Style | Manutenção de Produtos</title>
 		<link rel="stylesheet" href="../css/estruturaMan.css">
+        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
 	</head>
 <body>
 
