@@ -1,0 +1,200 @@
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    left: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
+header{
+    color: white;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 20px;
+}
+
+main{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+footer{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+
+
+.manutencao-abrir{
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    visibility: hidden;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.manutencao-abrir div{
+    background-color: white;
+    border-radius: 20px;
+    height: 60%;
+    visibility: hidden;
+}
+
+.fechar-tela img{
+    margin: 20px;
+    width: 30px;
+}
+
+.fechar-tela img:hover{
+    cursor: pointer;
+}
+
+
+.header-sidebar{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.sidebar {
+    top: 0;
+    left: 0;
+    width: 370px;
+    height: 100%;
+    background-color: #7a9ebb;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.user p{
+    font-size: 20px;
+}
+
+#user-img{
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+#sair{
+    max-width: 70px;
+    height: auto;
+    object-fit: contain;
+    transition: transform 0.2s ease-in-out;
+}
+
+#sair:hover{
+    transform: scale(1.10);
+}
+
+.sidebar h2{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    text-align: center;
+    font-size: 40px;
+}
+
+.navbar {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar a {
+    color: white;
+    transition: transform 0.1s ease-in-out;
+    padding: 10px;
+}
+
+.navbar a:hover {
+    transform: scale(1.10);
+}
+
+.navbar-itens{
+    display: flex;
+    flex-direction: column;
+    gap: 70px;
+}
+
+.navbar-itens-f{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.direita{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecalho{
+    width: 95%;
+    padding: 20px;
+}
+
+.cabecalho button{
+    width: 180px;
+    height: 40px;
+    background-color: #000;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.1s ease-in-out;
+}
+
+.cabecalho button:hover{
+    transform: scale(1.10);
+    cursor: pointer;
+}
+
+.cabecalho-lista{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.158);
+    padding-bottom: 10px;
+}
+
+.cabecalho-itens{
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    color: rgba(0, 0, 0, 0.363);
+}

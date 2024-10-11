@@ -20,8 +20,11 @@
 					response.sendRedirect("../adm-manutencao.jsp");
 				}
 				else if (login.equals("usuario") && senha.equals("1234"))
+				{
 					session.setAttribute("login",login);
-					response.sendRedirect("../index.jsp");
+					response.sendRedirect("../index.jsp");	
+				}
+				
 			}
 			else
 			{
