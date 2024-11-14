@@ -1,0 +1,87 @@
+main{
+    flex-grow: 1;
+}
+
+img{
+    width: 100%;
+    border-radius: 20px;
+}
+
+.container-tenis{
+    display: flex;
+    justify-content: center;
+}
+
+.mais-pop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.mais-pop h1{
+    color: white;
+}
+
+.lista-tenis{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 70px;
+}
+ 
+.box-tenis{
+    width: 250px;
+    color: white;
+    background-color: rgb(58, 58, 58);
+    border-radius: 20px;
+    border: 2px solid rgb(87, 87, 87);
+    transition: transform 0.2s ease-in-out;
+}
+
+.box-tenis:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.box-tenis-desc{
+    padding: 10px;
+}
+
+.box-tenis-comprar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-tenis-comprar button{
+    margin: 20px;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #4f80a8;
+    border: 2.5px solid #98c3e6;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.box-tenis-comprar button:hover{
+    background-color: rgb(131, 130, 130);
+    border: 2.5px solid #ffffff;
+    cursor: pointer;
+}
+ 
+#nome{
+    padding-top: 10px;
+}
+ 
+#modelo{
+    color: rgba(255, 255, 255, 0.281);
+}
+
+#valor{
+    font-weight: bolder;
+    font-size: 20px;
+}
