@@ -54,9 +54,7 @@
 				</div>
 			</main>
 
-			<footer>
-				<p>&copy; 2024 - METRO STYLE</p>
-			</footer>
+			<jsp:include page="/includes/footer.jsp" />
 		</div>
 	</body>
 </html>

@@ -17,21 +17,7 @@
 
 		<div class="direita">
 			<header>
-				<div class="navbar">
-					<div>
-						.
-					</div>
-					<div class="navbar-itens">
-						<a href="index.jsp">HOME</a>
-						<a href="./views/produtos.jsp">PRODUTOS</a>
-						<a href="./views/sobre.jsp">SOBRE</a>
-						<a href="./views/contato.jsp">CONTATO</a>
-					</div>
-					<div class="navbar-img">
-						<a href="#"><img src="./imgs/carrinho1.png" alt=""></a>
-						<a href="./views/login.jsp"><img src="./imgs/login1.png" alt=""></a>
-					</div>
-				</div>
+				<jsp:include page="/includes/nav_bar.jsp" />
 			</header>
 	
 			<main>
@@ -43,9 +29,7 @@
 				<a href="./views/login.jsp"><button id="sair">Sair</button></a>
 			</main>
 	
-			<footer>
-				<p>&copy; 2024 - METRO STYLE</p>
-			</footer>
+			<jsp:include page="/includes/footer.jsp" />
 		</div>
 	
 	</body>

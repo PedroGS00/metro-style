@@ -17,30 +17,14 @@
     
 		<div class="direita">
 			<header>
-				<div class="navbar">
-					<div>
-						.
-					</div>
-					<div class="navbar-itens">
-						<a href="../index.jsp">HOME</a>
-						<a href="./produtos.jsp">PRODUTOS</a>
-						<a href="./sobre.jsp">SOBRE</a>
-						<a href="./contato.jsp">CONTATO</a>
-					</div>
-					<div class="navbar-img">
-						<a href="#"><img src="../imgs/carrinho1.png" alt=""></a>
-						<a href="../views/login.jsp"><img src="../imgs/login1.png" alt=""></a>
-					</div>
-				</div>
+				<jsp:include page="/includes/nav_bar.jsp" />
 			</header>
 			
 			<main>
                 <h1>CONTATO</h1>
 			</main>
-	
-			<footer>
-				<p>&copy; 2024 - METRO STYLE</p>
-			</footer>
+			
+			<jsp:include page="/includes/footer.jsp" />
 		</div>
     </body>
 </html>

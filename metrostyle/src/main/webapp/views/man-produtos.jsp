@@ -1,64 +1,44 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Metrô Style | Manutenção de Produtos</title>
-		<link rel="stylesheet" href="../css/estruturaMan.css">
-        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/estruturaMan.css">
+        <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
 	</head>
 <body>
 
-	<!-- <h1>Manutenção de Produtos</h1> -->
-
-	<!-- Exibir mensagem de sucesso ou erro -->
-	<!-- <% if (request.getAttribute("mensagem") != null) { %>
+	 <% if (request.getAttribute("mensagem") != null) { %>
 	<p style="color: green;"><%= request.getAttribute("mensagem") %></p>
-	<% } %> -->
+	<% } %> 
 
 	<div class="manutencao-abrir">
-		<div>
+		<div class="manutencao-abrir-content">
 			<div class="fechar-tela">
-				<p onclick="fecharDiv()"><img src="../imgs/x.png" alt=""></p>
+				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDiv()"></p>
 			</div>
-			<!-- Formulário de Cadastro/Alteração de Produtos -->
-			<form action="ProdutoServlet" method="post">
-				<label for="nome">Nome do Produto:</label> <input type="text"
-					id="nome" name="nome" value="${produto.nome}" required /> <label
-					for="descricao">Descrição:</label>
-				<textarea id="descricao" name="descricao" required>${produto.descricao}</textarea>
 
-				<label for="preco">Preço:</label> <input type="number" id="preco"
-					name="preco" step="0.01" value="${produto.preco}" required /> <input
-					type="submit" value="Salvar Produto" />
-			</form>
-
-			<!-- Tabela de Produtos Cadastrados -->
-			<h2>Lista de Produtos</h2>
-			<table border="1">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Descrição</th>
-						<th>Preço</th>
-						<th>Ações</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="produto" items="${produtos}">
-						<tr>
-							<td>${produto.nome}</td>
-							<td>${produto.descricao}</td>
-							<td>${produto.preco}</td>
-							<td><a href="ProdutoServlet?action=editar&id=${produto.id}">Alterar</a>
-								<a href="ProdutoServlet?action=excluir&id=${produto.id}"
-								onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
-							</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+		    <form action="${produto == null ? 'novo' : 'update'}" method="post"> 
+		        <input type="hidden" name="id" value="${produto.getId()}"> 
+		
+		       	<label for="marca">Marca:</label><br> 
+		        <input type="text" name="marca" value="${produto.getMarca()}">
+		        <br>
+		        
+		        <label for="nome">Nome:</label><br> 
+		        <input type="text" name="nome" value="${produto.getNome()}">
+		        <br>
+		        
+		        <label for="descricao">Descrição:</label><br> 
+		        <input type="text" name="descricao" value="${produto.geliesc()}">
+		        <br><br>
+		        
+		        <input type="submit" value="Salvar"> 
+    		</form>
 		</div>
 	</div>
 
@@ -68,16 +48,16 @@
 			<div class="navbar">
 				<div class="navbar-itens">
 					<div class="user">
-						<img id="user-img" src="../imgs/user.png" alt="">
+						<img id="user-img" src="${pageContext.request.contextPath}/imgs/user.png" alt="">
 						<p>Administrador</p>
 					</div>
 					<div class="navbar-itens-f">
-						<a href="../index.jsp">HOME</a>
-						<a href="./produtos.jsp">PRODUTOS</a>
-						<a href="./sobre.jsp">SOBRE</a>
-						<a href="./contato.jsp">CONTATO</a>
+						<a href="${pageContext.request.contextPath}/index.jsp">HOME</a>
+						<a href="${pageContext.request.contextPath}/views/produtos.jsp">PRODUTOS</a>
+						<a href="${pageContext.request.contextPath}/views/sobre.jsp">SOBRE</a>
+						<a href="${pageContext.request.contextPath}/views/contato.jsp">CONTATO</a>
 					</div>
-					<a href="../adm-manutencao.jsp"><img id="sair" src="../imgs/logout.png" alt=""></a>
+					<a href="../adm-manutencao.jsp"><img id="sair" src="${pageContext.request.contextPath}/imgs/logout.png" alt=""></a>
 				</div>
 			</div>
 		</div>
@@ -90,27 +70,41 @@
 		</header>
 
 		<main>
-			<div class="cabecalho">
+			<div class="content">
 				<div class="cabecalho-lista">
 					<h2>Lista de Produtos</h2>
 					<button class="btn-cadastro" onclick="abrirDiv()">Cadastrar Produto</button>
 				</div>
 				<div class="cabecalho-itens">
-					<p>Nome</p>
-					<p>E-mail</p>
-					<p>Telefone</p>
-					<p>Número da Inscrição</p>
-					<p>Data de Emissão</p>
+					<p>Id do Produto</p>
+					<p>Marca</p>
+					<p>Descrição</p>
+					<p>Valor</p>
+					<p>Ações</p>
 				</div>
+		        <table border="1" cellspacing="0" cellpadding="5">
+		            <tbody>
+		                <c:forEach var="produto" items="${listaProdutos}">
+		                    <tr>
+		                        <td>${produto.id}</td>
+		                        <td>${produto.marca}</td>
+		                        <td>${produto.desc}</td>
+		                        <td>${produto.valor}</td>
+		                        <td> 
+								    <a href="editar?id=${produto.id}">Editar</a>
+								    <a href="excluir?id=${produto.id}" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
+								</td>
+		                    </tr>
+		                </c:forEach>
+		            </tbody>
+		        </table> 
 			</div>
 		</main>
 
-		<footer>
-			<p>&copy; 2024 - METRO STYLE</p>
-		</footer>
+		<jsp:include page="/includes/footer.jsp" />
 	</div>
 </body>
 
-<script src="../js/telaCadastro.js"></script>
+<script src="${pageContext.request.contextPath}/js/sobreTela.js"></script>
 
 </html>

@@ -81,11 +81,9 @@
 				</div>
 			</main>
 
-			<footer>
-				<p>&copy; 2024 - METRO STYLE</p>
-			</footer>
+			<jsp:include page="/includes/footer.jsp" />
 		</div>
 	</body>
 
-	<script src="../js/telaCadastro.js"></script>
+	<script src="../js/sobreTela.js"></script>
 </html>

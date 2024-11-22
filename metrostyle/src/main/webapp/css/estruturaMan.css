@@ -65,11 +65,12 @@ a{
     align-items: center;
 }
 
-.manutencao-abrir div{
+.manutencao-abrir-content{
     background-color: white;
     border-radius: 20px;
-    height: 60%;
     visibility: hidden;
+    height: 60%;
+
 }
 
 .fechar-tela img{
@@ -164,12 +165,12 @@ a{
     flex-direction: column;
 }
 
-.cabecalho{
+.content{
     width: 95%;
     padding: 20px;
 }
 
-.cabecalho button{
+.content button{
     width: 180px;
     height: 40px;
     background-color: #000;
@@ -179,7 +180,7 @@ a{
     transition: transform 0.1s ease-in-out;
 }
 
-.cabecalho button:hover{
+.content button:hover{
     transform: scale(1.10);
     cursor: pointer;
 }
@@ -198,3 +199,12 @@ a{
     justify-content: space-around;
     color: rgba(0, 0, 0, 0.363);
 }
+
+.content-itens{
+	background-color: blue;
+	display: flex;
+    flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
