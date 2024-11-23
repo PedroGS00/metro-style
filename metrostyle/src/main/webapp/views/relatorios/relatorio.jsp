@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Relatórios de produtos</title>
-		<link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+		<link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
 
 </head>
 <body>

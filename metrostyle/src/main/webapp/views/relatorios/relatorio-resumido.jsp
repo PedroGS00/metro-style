@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Relatorio Resumido</title>
-		<link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+		<link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
 
 </head>
 <body>
@@ -38,7 +38,7 @@
     </table>
 
     <br>
-    <a href="relatorio.jsp">Voltar aos Relatórios</a>
+    <a href="${pageContext.request.contextPath}/views/relatorios/relatorio.jsp">Voltar aos Relatórios</a>
 
 </body>
 </html>

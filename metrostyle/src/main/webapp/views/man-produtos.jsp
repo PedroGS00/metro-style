@@ -22,19 +22,19 @@
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDiv()"></p>
 			</div>
 
-		    <form action="${produto == null ? 'novo' : 'update'}" method="post"> 
+		    <form action="${produto == null ? 'produtos/novo' : 'update'}" method="post"> 
 		        <input type="hidden" name="id" value="${produto.getId()}"> 
 		
 		       	<label for="marca">Marca:</label><br> 
 		        <input type="text" name="marca" value="${produto.getMarca()}">
 		        <br>
 		        
-		        <label for="nome">Nome:</label><br> 
-		        <input type="text" name="nome" value="${produto.getNome()}">
+		        <label for="descricao">Descrição:</label><br> 
+		        <input type="text" name="descricao" value="${produto.getDesc()}">
 		        <br>
 		        
-		        <label for="descricao">Descrição:</label><br> 
-		        <input type="text" name="descricao" value="${produto.geliesc()}">
+		        <label for="nome">Valor:</label><br> 
+		        <input type="text" name="valor" value="${produto.getValor() != null? produto.getValor() : 0}">
 		        <br><br>
 		        
 		        <input type="submit" value="Salvar"> 
@@ -44,7 +44,7 @@
 
 	<div class="sidebar">
 		<div class="header-sidebar">
-			<a href="../index.jsp"><h2>Metrô Style</h2></a>
+			<a href="${pageContext.request.contextPath}/index.jsp"><h2>Metrô Style</h2></a>
 			<div class="navbar">
 				<div class="navbar-itens">
 					<div class="user">
@@ -57,7 +57,7 @@
 						<a href="${pageContext.request.contextPath}/views/sobre.jsp">SOBRE</a>
 						<a href="${pageContext.request.contextPath}/views/contato.jsp">CONTATO</a>
 					</div>
-					<a href="../adm-manutencao.jsp"><img id="sair" src="${pageContext.request.contextPath}/imgs/logout.png" alt=""></a>
+					<a href="${pageContext.request.contextPath}/adm-manutencao.jsp"><img id="sair" src="${pageContext.request.contextPath}/imgs/logout.png" alt=""></a>
 				</div>
 			</div>
 		</div>

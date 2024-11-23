@@ -5,28 +5,28 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Relatórios de produtos </title>
-		<link rel="stylesheet" href="../css/estruturaMan.css">
-		<link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/estruturaMan.css">
+		<link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
 		
 	</head>
 
 	<body>
 		<div class="sidebar">
 			<div class="header-sidebar">
-				<a href="../index.jsp"><h2>Metrô Style</h2></a>
+				<a href="${pageContext.request.contextPath}/index.jsp"><h2>Metrô Style</h2></a>
 				<div class="navbar">
 					<div class="navbar-itens">
 						<div class="user">
-							<img id="user-img" src="../imgs/user.png" alt="">
+							<img id="user-img" src="${pageContext.request.contextPath}/imgs/user.png" alt="">
 							<p>Administrador</p>
 						</div>
 						<div class="navbar-itens-f">
-							<a href="../index.jsp">HOME</a>
-							<a href="./produtos.jsp">PRODUTOS</a>
-							<a href="./sobre.jsp">SOBRE</a>
-							<a href="./contato.jsp">CONTATO</a>
+							<a href="${pageContext.request.contextPath}/index.jsp">HOME</a>
+							<a href="${pageContext.request.contextPath}/views/produtos.jsp">PRODUTOS</a>
+							<a href="${pageContext.request.contextPath}/views/sobre.jsp">SOBRE</a>
+							<a href="${pageContext.request.contextPath}/views/contato.jsp">CONTATO</a>
 						</div>
-						<a href="../adm-manutencao.jsp"><img id="sair" src="../imgs/logout.png" alt=""></a>
+						<a href="${pageContext.request.contextPath}/adm-manutencao.jsp"><img id="sair" src="${pageContext.request.contextPath}/imgs/logout.png" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 			</header>
 
 			<main>
-				<div class="cabecalho">
+				<div class="content">
 					<div class="cabecalho-lista">
 						<h2>Lista de Vendas</h2>
 					</div>

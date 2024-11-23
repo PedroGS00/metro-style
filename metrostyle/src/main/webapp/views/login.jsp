@@ -6,9 +6,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Metrô Style | Login</title>
-        <link rel="stylesheet" href="../css/login.css">
-        <link rel="stylesheet" href="../css/estruturaNav.css">
-        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estruturaNav.css">
+        <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
         
     </head>
 
@@ -31,7 +31,7 @@
     
             <main>
                 <div class="login-container">
-                    <form action="./login-response.jsp" method="post">
+                    <form action="${pageContext.request.contextPath}/views/login-response.jsp" method="post">
                         <h2>Logue-se na Metro Style</h2>
                         <div class="login-campo">
                             <input type="text" name="login" placeholder="Usuário" required>
@@ -44,15 +44,15 @@
                         </div>               
     
                         <div class="sem-conta">
-                            <p>Ainda não tem conta? <a href="./cadastre.jsp">Cadastre-se</a></p>
+                            <p>Ainda não tem conta? <a href="${pageContext.request.contextPath}/views/cadastre.jsp">Cadastre-se</a></p>
                         </div>
                         
                         <p>OR</p>
                         
                         <div class="social-login">
-                            <a href="#"><img src="../imgs/apple.png" alt="Apple"></a>
-                            <a href="#"><img src="../imgs/google.png" alt="Google"></a>
-                            <a href="#"><img src="../imgs/facebook.png" alt="Facebook"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/imgs/apple.png" alt="Apple"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/imgs/google.png" alt="Google"></a>
+                            <a href="#"><img src="${pageContext.request.contextPath}/imgs/facebook.png" alt="Facebook"></a>
                         </div>
                     </form>
                 </div>

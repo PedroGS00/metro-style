@@ -49,6 +49,11 @@ public class ProdutoController extends HttpServlet {
                 case "/produtos":
                     listar(request, response);
                     break;
+                case ROTA_NOVO:
+                    if ("POST".equalsIgnoreCase(request.getMethod())) {
+                        salvar(request, response);
+                    }
+                    break;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProdutoController.class.getName()).log(Level.SEVERE, null, ex);
@@ -62,5 +67,23 @@ public class ProdutoController extends HttpServlet {
         request.setAttribute("listaProdutos", listaProdutos);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/man-produtos.jsp");
         dispatcher.forward(request, response);
+    }
+
+    // Método para salvar um novo produto
+    private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+        String marca = request.getParameter("marca");
+        String descricao = request.getParameter("descricao");
+        double valor = Double.parseDouble(request.getParameter("valor"));
+
+        // Cria e insere o produto
+        Produto produto = new Produto();
+        produto.setMarca(marca);
+        produto.setDesc(descricao);
+        produto.setValor(valor);
+
+        produtoDAO.inserir(produto);
+
+        // Redireciona para a lista após salvar
+        response.sendRedirect(request.getContextPath() + "/produtos");
     }
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+${pageContext.request.contextPath}<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -6,9 +6,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Metrô Style | Ínicio</title>
-        <link rel="stylesheet" type="text/css"  href="./css/index.css">
-        <link rel="stylesheet" type="text/css"  href="./css/estruturaNav.css">
-		<link rel="shortcut icon" type="imagex/png" href="./imgs/icon.png">
+        <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/index.css">
+        <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/estruturaNav.css">
+		<link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
 		
     </head>
 
@@ -26,7 +26,7 @@
 						<h1>Mais Populares</h1>
 						<div class="lista-tenis">
 							<div class="box-tenis">
-								<img src="./imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -37,7 +37,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="./imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -48,7 +48,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="./imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -59,7 +59,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="./imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>

@@ -6,9 +6,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Metrô Style | Produtos</title>
-        <link rel="stylesheet" type="text/css"  href="../css/produtos.css">
-        <link rel="stylesheet" type="text/css"  href="../css/estruturaNav.css">
-        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+        <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/produtos.css">
+        <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/estruturaNav.css">
+        <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
         
     </head>
 
@@ -26,7 +26,7 @@
 						<h1>Produtos</h1>
 						<div class="lista-tenis">
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -37,7 +37,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -48,7 +48,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -59,53 +59,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
-								<div class="box-tenis-desc">
-									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
-									<p id="modelo">Casual</p>
-									<p id="valor">R$ 400,00</p>
-								</div>
-								<div class="box-tenis-comprar">
-									<button>COMPRAR</button>
-								</div>
-							</div>
-						</div>
-						<div class="lista-tenis">
-							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
-								<div class="box-tenis-desc">
-									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
-									<p id="modelo">Casual</p>
-									<p id="valor">R$ 400,00</p>
-								</div>
-								<div class="box-tenis-comprar">
-									<button>COMPRAR</button>
-								</div>
-							</div>
-							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
-								<div class="box-tenis-desc">
-									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
-									<p id="modelo">Casual</p>
-									<p id="valor">R$ 400,00</p>
-								</div>
-								<div class="box-tenis-comprar">
-									<button>COMPRAR</button>
-								</div>
-							</div>
-							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
-								<div class="box-tenis-desc">
-									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
-									<p id="modelo">Casual</p>
-									<p id="valor">R$ 400,00</p>
-								</div>
-								<div class="box-tenis-comprar">
-									<button>COMPRAR</button>
-								</div>
-							</div>
-							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -118,7 +72,7 @@
 						</div>
 						<div class="lista-tenis">
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -129,7 +83,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -140,7 +94,7 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>
@@ -151,7 +105,53 @@
 								</div>
 							</div>
 							<div class="box-tenis">
-								<img src="../imgs/1.png" alt="Tênis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
+								<div class="box-tenis-desc">
+									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
+									<p id="modelo">Casual</p>
+									<p id="valor">R$ 400,00</p>
+								</div>
+								<div class="box-tenis-comprar">
+									<button>COMPRAR</button>
+								</div>
+							</div>
+						</div>
+						<div class="lista-tenis">
+							<div class="box-tenis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
+								<div class="box-tenis-desc">
+									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
+									<p id="modelo">Casual</p>
+									<p id="valor">R$ 400,00</p>
+								</div>
+								<div class="box-tenis-comprar">
+									<button>COMPRAR</button>
+								</div>
+							</div>
+							<div class="box-tenis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
+								<div class="box-tenis-desc">
+									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
+									<p id="modelo">Casual</p>
+									<p id="valor">R$ 400,00</p>
+								</div>
+								<div class="box-tenis-comprar">
+									<button>COMPRAR</button>
+								</div>
+							</div>
+							<div class="box-tenis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
+								<div class="box-tenis-desc">
+									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
+									<p id="modelo">Casual</p>
+									<p id="valor">R$ 400,00</p>
+								</div>
+								<div class="box-tenis-comprar">
+									<button>COMPRAR</button>
+								</div>
+							</div>
+							<div class="box-tenis">
+								<img src="${pageContext.request.contextPath}/imgs/1.png" alt="Tênis">
 								<div class="box-tenis-desc">
 									<p id="nome">Tênis Nike Revolution 6 Next Nature Preto/ Branco</p>
 									<p id="modelo">Casual</p>

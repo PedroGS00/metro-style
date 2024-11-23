@@ -6,9 +6,9 @@
     <head>
         <meta charset="UTF-8">
         <title>Metrô Style | Contato</title>
-        <link rel="stylesheet" type="text/css"  href="../css/contato.css">
-        <link rel="stylesheet" type="text/css"  href="../css/estruturaNav.css">
-        <link rel="shortcut icon" type="imagex/png" href="../imgs/icon.png">
+        <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/contato.css">
+        <link rel="stylesheet" type="text/css"  href="${pageContext.request.contextPath}/css/estruturaNav.css">
+        <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
         
     </head>
 

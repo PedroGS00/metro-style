@@ -35,4 +35,29 @@ public class ProdutoDAO {
         } 
         return produtos; 
     }
+
+    // Método para inserir um novo produto
+    public boolean inserir(Produto produto) { 
+        boolean retorno = false; 
+        try { 
+            conexao = ConnectionFactory.getConnection(); 
+            String sql = "INSERT INTO tb_produtos (marca, descricao, valor) values(?, ?, ?)"; 
+            PreparedStatement ps = conexao.prepareStatement(sql); 
+            ps.setString(1, produto.getMarca()); 
+            ps.setString(2, produto.getDesc()); 
+            ps.setDouble(3, produto.getValor());
+            int linhasAfetadas = ps.executeUpdate(); 
+            if (linhasAfetadas > 0) { 
+                retorno = true; 
+            }
+        } 
+        catch (SQLException e) { 
+            e.printStackTrace(); 
+        } 
+        finally { 
+            // código omitido
+        }  
+        return retorno;  
+    }
+
 }
