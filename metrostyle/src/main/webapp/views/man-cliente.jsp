@@ -21,14 +21,15 @@
 				</div>
 				 <h2>Cadastro de Cliente</h2> 
 
-				<form action="ClienteServlet" method="post">
-					<input type="hidden" name="action" value="incluir">
-					Nome: <input type="text" name="nome" required><br>
-					Email: <input type="email" name="email" required><br>
-					Telefone: <input type="text" name="telefone" required><br>
-					Endereço: <input type="text" name="endereco" required><br> 
-					<input type="submit" value="Cadastrar">
-				</form>
+			<form action="${cliente == null ? 'novo' : 'update'}" method="post">
+				
+				<input type="hidden" name="id" value="${cliente.id_Cliente}">
+					Nome: <input type="text" name="nome" value="${cliente.nome}"><br>
+					Email: <input type="text" name="email" value="${cliente.email}"><br>
+					Telefone: <input type="text" name="telefone" value="${cliente.telefone}"><br> 
+					<input type="submit"value="Salvar"> 
+					<input type="button" value="Cancelar" onclick="window.location.href='clientes/listar';" />
+			</form>
 
 				<h2>Lista de Clientes</h2>
 				<form action="ClienteServlet" method="get">
@@ -53,7 +54,8 @@
 							<a href="${pageContext.request.contextPath}/views/sobre.jsp">SOBRE</a>
 							<a href="${pageContext.request.contextPath}/views/contato.jsp">CONTATO</a>
 						</div>
-						<a href="${pageContext.request.contextPath}/adm-manutencao.jsp"><img id="sair" src="${pageContext.request.contextPath}/imgs/logout.png" alt=""></a>
+						<a href="${pageContext.request.contextPath}/adm-manutencao.jsp">
+						<img id="sair" src="${pageContext.request.contextPath}/imgs/logout.png" alt=""></a>
 					</div>
 				</div>
 			</div>
@@ -71,14 +73,27 @@
 						<h2>Lista de Clientes</h2>
 						<button onclick="abrirDiv()">Cadastrar Cliente</button>
 					</div>
-					<div class="cabecalho-itens">
-						<p>Nome</p>
-						<p>E-mail</p>
-						<p>Telefone</p>
-						<p>Número da Inscrição</p>
-						<p>Data de Emissão</p>
-					</div>
-				</div>
+					<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>Email</th>
+				<th>Telefone</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="clientes" items="${listaClientes}">
+				<tr>
+					<td>${cliente.id_Cliente}</td>
+					<td>${cliente.nome}</td>
+					<td>${cliente.email}</td>
+					<td>${cliente.telefone}</td>
+					<td>
+					<a href="editar?id=${cliente.id_Cliente}">Editar</a> 
+					<a href="excluir?id=${cliente.id_Cliente}">Excluir</a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
 			</main>
 
 			<jsp:include page="/includes/footer.jsp" />

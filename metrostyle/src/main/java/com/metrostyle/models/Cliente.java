@@ -3,35 +3,35 @@ package com.metrostyle.models;
 public class Cliente {
 	private int id_cliente;
 	private String nome;
-	private String user;
-	private String senha;
+	private String email;
+	private String telefone;
 	
-	public int getId() {
+	public Cliente() {
+		
+	}
+	public int getId_cliente() {
 		return id_cliente;
 	}
-	public void setId(int id) {
-		this.id_cliente = id;
+	public void setId_cliente(int id_cliente) {
+		this.id_cliente = id_cliente;
 	}
-	
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public String getUser() {
-		return user;
+	public String getEmail() {
+		return email;
 	}
-	public void setUser(String user) {
-		this.user = user;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
-	public String getSenha() {
-		return senha;
+	public String getTelefone() {
+		return telefone;
 	}
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 }
