@@ -19,18 +19,18 @@
 			</div>
 
 		    <form action="${pageContext.request.contextPath}/clientes/novo" method="post"> 
-		        <input type="hidden" name="id" value="${produto.getId()}"> 
+		        <input type="hidden" name="id" value="${cliente.getId()}"> 
 		
 		       	<label for="nome">Nome:</label><br> 
-		        <input type="text" name="nome" value="${produto.getMarca()}">
+		        <input type="text" name="nome" value="${cliente.getNome()}">
 		        <br>
 		        
 		        <label for="user">Nome de Usuário:</label><br> 
-		        <input type="text" name="user" value="${produto.getDesc()}">
+		        <input type="text" name="user" value="${cliente.getUser()}">
 		        <br>
 		        
 		        <label for="senha">Senha:</label><br> 
-		        <input type="text" name="senha" value="${produto.getValor() != null? produto.getValor() : 0}">
+		        <input type="text" name="senha" value="${cliente.getSenha()}">
 		        <br><br>
 		        
 		        <input type="submit" value="Salvar"> 
@@ -44,8 +44,8 @@
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
 			</div>
 
-			<form action="${pageContext.request.contextPath}/produtos/update" method="post"> 
-				<input id="id_produto" type="hidden" name="id">
+			<form action="${pageContext.request.contextPath}/clientes/update" method="post"> 
+				<input id="id_cliente" type="hidden" name="id">
 
 				<label for="nome">Nome:</label><br> 
 				<input id="nome" type="text" name="nome">
@@ -98,25 +98,39 @@
 					<h2>Lista de Clientes</h2>
 					<button class="btn-cadastro" onclick="abrirDivCAD()">Cadastrar Cliente</button>
 				</div>
-				<div class="cabecalho-itens">
-					<p>Id do Cliente</p>
-					<p>Marca</p>
-					<p>Descrição</p>
-					<p>Valor</p>
-					<p>Ações</p>
-				</div>
-		        <table border="1" cellspacing="0" cellpadding="5">
+		        <table class="content-tabela" border="1" cellspacing="0" cellpadding="5">
+					<thead>
+						<tr>
+							<th>Id do Cliente</th>
+							<th>Nome</th>
+							<th>Nome de Usuário</th>
+							<th>Senha</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
 		            <tbody>
-		                <c:forEach var="produto" items="${listaProdutos}">
-		                    <tr>
-		                        <td>${produto.id}</td>
-		                        <td>${produto.marca}</td>
-		                        <td>${produto.desc}</td>
-		                        <td>${produto.valor}</td>
-		                        <td> 
-								    <button onclick="abrirDivEDIT(${produto.id}, '${produto.marca}', '${produto.desc}', ${produto.valor})">Editar</button>
+						<!-- Exemplo -->
+						<!-- <tr>
+							<td>1</td>
+							<td>Rodrigo Pires</td>
+							<td>rodrigo.pires123</td>
+							<td>12345</td>
+							<td> 
+								<button class="btn-itens">Editar</button>
 
-								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
+								<button class="btn-itens">Excluir</button>
+							</td>
+						</tr> -->
+		                <c:forEach var="cliente" items="${listaclientes}">
+		                    <tr>
+		                        <td>${cliente.id}</td>
+		                        <td>${cliente.nome}</td>
+		                        <td>${cliente.user}</td>
+		                        <td>${cliente.senha}</td>
+		                        <td> 
+								    <button class="btn-itens" onclick="abrirDivEDIT(${cliente.id}, '${cliente.nome}', '${cliente.user}', ${cliente.senha})">Editar</button>
+
+								    <a href="${pageContext.request.contextPath}/clientes/excluir?id=${cliente.id}"><button class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</button></a>
 								</td>
 		                    </tr>
 		                </c:forEach>

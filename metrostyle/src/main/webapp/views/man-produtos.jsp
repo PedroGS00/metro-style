@@ -17,24 +17,25 @@
 			<div class="fechar-tela-cad">
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivCAD()"></p>
 			</div>
-
-		    <form action="${pageContext.request.contextPath}/produtos/novo" method="post"> 
-		        <input type="hidden" name="id" value="${produto.getId()}"> 
-		
-		       	<label for="marca">Marca:</label><br> 
-		        <input type="text" name="marca" value="${produto.getMarca()}">
-		        <br>
-		        
-		        <label for="descricao">Descrição:</label><br> 
-		        <input type="text" name="descricao" value="${produto.getDesc()}">
-		        <br>
-		        
-		        <label for="nome">Valor:</label><br> 
-		        <input type="text" name="valor" value="${produto.getValor() != null? produto.getValor() : 0}">
-		        <br><br>
-		        
-		        <input type="submit" value="Salvar"> 
-    		</form>
+			<div class="manutencao-form">
+				<form action="${pageContext.request.contextPath}/produtos/novo" method="post"> 
+					<input type="hidden" name="id" value="${produto.getId()}"> 
+			
+					   <label for="marca">Marca:</label><br> 
+					<input type="text" name="marca" value="${produto.getMarca()}">
+					<br>
+					
+					<label for="descricao">Descrição:</label><br> 
+					<input type="text" name="descricao" value="${produto.getDesc()}">
+					<br>
+					
+					<label for="nome">Valor:</label><br> 
+					<input type="text" name="valor" value="${produto.getValor() != null? produto.getValor() : 0}">
+					<br><br>
+					
+					<input type="submit" value="Salvar"> 
+				</form>
+			</div>
 		</div>
 	</div>
 
@@ -98,15 +99,29 @@
 					<h2>Lista de Produtos</h2>
 					<button class="btn-cadastro" onclick="abrirDivCAD()">Cadastrar Produto</button>
 				</div>
-				<div class="cabecalho-itens">
-					<p>Id do Produto</p>
-					<p>Marca</p>
-					<p>Descrição</p>
-					<p>Valor</p>
-					<p>Ações</p>
-				</div>
-		        <table border="1" cellspacing="0" cellpadding="5">
+		        <table class="content-tabela" border="1" cellspacing="0" cellpadding="5">
+					<thead>
+						<tr>
+							<th>Id do Produto</th>
+							<th>Marca</th>
+							<th>Descrição</th>
+							<th>Valor</th>
+							<th>Ações</th>
+						</tr>
+					</thead>
 		            <tbody>
+						<!-- Exemplo -->
+						<!-- <tr>
+							<td>1</td>
+							<td>Nike</td>
+							<td>Tênis Casual AirMax 90</td>
+							<td>R$ 789,90</td>
+							<td> 
+								<button class="btn-itens">Editar</button>
+
+								<button class="btn-itens">Excluir</button>
+							</td>
+						</tr> -->
 		                <c:forEach var="produto" items="${listaProdutos}">
 		                    <tr>
 		                        <td>${produto.id}</td>
@@ -114,9 +129,9 @@
 		                        <td>${produto.desc}</td>
 		                        <td>${produto.valor}</td>
 		                        <td> 
-								    <button onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.marca}', '${produto.desc}', ${produto.valor})">Editar</button>
+								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.marca}', '${produto.desc}', ${produto.valor})">Editar</button>
 
-								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
+								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
 								</td>
 		                    </tr>
 		                </c:forEach>

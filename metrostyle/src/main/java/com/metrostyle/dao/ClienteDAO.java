@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.metrostyle.models.Cliente;
-import com.metrostyle.models.Produto;
 import com.metrostyle.utils.ConnectionFactory;
 
 public class ClienteDAO {
@@ -17,16 +16,18 @@ public class ClienteDAO {
 		boolean retorno = false;
 		try {
 			conexao = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO dbcliente (nome,email,telefone) values(?,?,?)";
+			String sql = "INSERT INTO tb_clientes (nome,user,senha) values(?,?,?)";
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, cliente.getNome());
 			ps.setString(2, cliente.getUser());
 			ps.setString(3, cliente.getSenha());
 			int linhasAfetadas = ps.executeUpdate();
 			if(linhasAfetadas >0) { retorno = true; }
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
 			e.printStackTrace();
-		} finally { 
+		} 
+		finally { 
 			//código omitido}
 		}
 		return retorno;
@@ -34,32 +35,57 @@ public class ClienteDAO {
 	
 	public ArrayList<Cliente> listar() {
 		ArrayList<Cliente> clientes = new ArrayList<>();
-		String sql = "SELECT * FROM dbcliente";
+		String sql = "SELECT * FROM tb_clientes";
 		try (
 		Connection connection = ConnectionFactory.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(sql))
 		{
-		ResultSet rs = preparedStatement.executeQuery();
-
-		while (rs.next()) {
-		int id = rs.getInt("id_cliente");
-		String nome = rs.getString("nome");
-		String user = rs.getString("user");
-		String senha= rs.getString("senha");
-		
-		Cliente itemLista = new Cliente();
-		itemLista.setId(id);
-		itemLista.setNome(nome);
-		itemLista.setUser(user);
-		itemLista.setSenha(senha);
-		clientes.add(itemLista);
+			ResultSet rs = preparedStatement.executeQuery();
+	
+			while (rs.next()) {
+				int id = rs.getInt("id_cliente");
+				String nome = rs.getString("nome");
+				String user = rs.getString("user");
+				String senha= rs.getString("senha");
+				
+				Cliente itemLista = new Cliente();
+				itemLista.setId(id);
+				itemLista.setNome(nome);
+				itemLista.setUser(user);
+				itemLista.setSenha(senha);
+				clientes.add(itemLista);
+			}
 		}
-		}catch (SQLException e) {
-		e.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 
 		return clientes;
-		}
+	}
+	
+	// Método para atualizar um cliente
+    public boolean atualizar(Cliente cliente) throws SQLException {
+        String sql = "UPDATE tb_clientes SET nome = ?, user = ?, senha = ? WHERE id_cliente = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getUser());
+            stmt.setString(3, cliente.getSenha());
+            stmt.setInt(4, cliente.getId());
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; // Retorna true se a atualização for bem-sucedida
+        }
+    }
 
+    // Método para excluir um cliente
+    public boolean excluir(int id) throws SQLException {
+        String sql = "DELETE FROM tb_clientes WHERE id_cliente = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; // Retorna true se a exclusão for bem-sucedida
+        }
+    }
 
 }
