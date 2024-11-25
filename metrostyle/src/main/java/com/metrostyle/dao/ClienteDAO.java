@@ -20,16 +20,16 @@ public class ClienteDAO {
 			String sql = "INSERT INTO dbcliente (nome,email,telefone) values(?,?,?)";
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, cliente.getNome());
-			ps.setString(2, cliente.getEmail());
-			ps.setString(3, cliente.getTelefone());
+			ps.setString(2, cliente.getUser());
+			ps.setString(3, cliente.getSenha());
 			int linhasAfetadas = ps.executeUpdate();
 			if(linhasAfetadas >0) { retorno = true; }
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally { 
 			//código omitido}
-			return retorno;
 		}
+		return retorno;
 	}
 	
 	public ArrayList<Cliente> listar() {
@@ -44,14 +44,14 @@ public class ClienteDAO {
 		while (rs.next()) {
 		int id = rs.getInt("id_cliente");
 		String nome = rs.getString("nome");
-		String email = rs.getString("email");
-		String telefone = rs.getString("telefone");
+		String user = rs.getString("user");
+		String senha= rs.getString("senha");
 		
 		Cliente itemLista = new Cliente();
-		itemLista.setId_cliente(id);
+		itemLista.setId(id);
 		itemLista.setNome(nome);
-		itemLista.setEmail(email);
-		itemLista.setTelefone(telefone);
+		itemLista.setUser(user);
+		itemLista.setSenha(senha);
 		clientes.add(itemLista);
 		}
 		}catch (SQLException e) {

@@ -12,17 +12,13 @@
 	</head>
 <body>
 
-	 <% if (request.getAttribute("mensagem") != null) { %>
-	<p style="color: green;"><%= request.getAttribute("mensagem") %></p>
-	<% } %> 
-
 	<div class="manutencao-abrir">
-		<div class="manutencao-abrir-content">
-			<div class="fechar-tela">
-				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDiv()"></p>
+		<div class="manutencao-abrir-cadastro">
+			<div class="fechar-tela-cad">
+				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivCAD()"></p>
 			</div>
 
-		    <form action="${produto == null ? 'produtos/novo' : 'update'}" method="post"> 
+		    <form action="${pageContext.request.contextPath}/produtos/novo" method="post"> 
 		        <input type="hidden" name="id" value="${produto.getId()}"> 
 		
 		       	<label for="marca">Marca:</label><br> 
@@ -39,6 +35,33 @@
 		        
 		        <input type="submit" value="Salvar"> 
     		</form>
+		</div>
+	</div>
+
+	<div class="manutencao-abrir">
+		<div class="manutencao-abrir-editar">
+			<div class="fechar-tela-edit">
+				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
+			</div>
+
+			<form action="${pageContext.request.contextPath}/produtos/update" method="post"> 
+				<input id="id_produto" type="hidden" name="id">
+
+				<label for="marca">Marca:</label><br> 
+				<input id="marca" type="text" name="marca">
+				<br>
+
+				<label for="descricao">Descrição:</label><br> 
+				<input id="descricao" type="text" name="descricao">
+				<br>
+
+				<label for="valor">Valor:</label><br> 
+				<input id="valor" type="text" name="valor">
+				<br><br>
+
+				<input type="submit" value="Atualizar">  
+			</form>
+
 		</div>
 	</div>
 
@@ -73,7 +96,7 @@
 			<div class="content">
 				<div class="cabecalho-lista">
 					<h2>Lista de Produtos</h2>
-					<button class="btn-cadastro" onclick="abrirDiv()">Cadastrar Produto</button>
+					<button class="btn-cadastro" onclick="abrirDivCAD()">Cadastrar Produto</button>
 				</div>
 				<div class="cabecalho-itens">
 					<p>Id do Produto</p>
@@ -91,8 +114,9 @@
 		                        <td>${produto.desc}</td>
 		                        <td>${produto.valor}</td>
 		                        <td> 
-								    <a href="editar?id=${produto.id}">Editar</a>
-								    <a href="excluir?id=${produto.id}" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</a>
+								    <button onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.marca}', '${produto.desc}', ${produto.valor})">Editar</button>
+
+								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
 								</td>
 		                    </tr>
 		                </c:forEach>

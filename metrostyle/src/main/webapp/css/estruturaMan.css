@@ -65,20 +65,28 @@ a{
     align-items: center;
 }
 
-.manutencao-abrir-content{
+.manutencao-abrir-cadastro{
     background-color: white;
     border-radius: 20px;
     visibility: hidden;
     height: 60%;
-
 }
 
-.fechar-tela img{
+.manutencao-abrir-editar{
+    background-color: white;
+    border-radius: 20px;
+    visibility: hidden;
+    height: 60%;
+}
+
+.fechar-tela-cad img,
+.fechar-tela-edit img{
     margin: 20px;
     width: 30px;
 }
 
-.fechar-tela img:hover{
+.fechar-tela-cad img:hover, 
+.fechar-tela-edit img:hover{
     cursor: pointer;
 }
 
@@ -89,6 +97,7 @@ a{
 }
 
 .sidebar {
+    position: fixed;
     top: 0;
     left: 0;
     width: 370px;
@@ -163,6 +172,7 @@ a{
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    margin-left: 370px;
 }
 
 .content{

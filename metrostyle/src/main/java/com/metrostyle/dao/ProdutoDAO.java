@@ -60,4 +60,29 @@ public class ProdutoDAO {
         return retorno;  
     }
 
+    // Método para atualizar um produto
+    public boolean atualizar(Produto produto) throws SQLException {
+        String sql = "UPDATE tb_produtos SET marca = ?, descricao = ?, valor = ? WHERE id_produto = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, produto.getMarca());
+            stmt.setString(2, produto.getDesc());
+            stmt.setDouble(3, produto.getValor());
+            stmt.setInt(4, produto.getId());
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; // Retorna true se a atualização for bem-sucedida
+        }
+    }
+
+    // Método para excluir um produto
+    public boolean excluir(int id) throws SQLException {
+        String sql = "DELETE FROM tb_produtos WHERE id_produto = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int linhasAfetadas = stmt.executeUpdate();
+            return linhasAfetadas > 0; // Retorna true se a exclusão for bem-sucedida
+        }
+    }
+
 }

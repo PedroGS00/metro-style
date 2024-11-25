@@ -12,9 +12,9 @@ public class ConnectionFactory {
             //Opcional : Registro o driver 
             Class.forName("com.mysql.cj.jdbc.Driver"); 
             //Caminho do banco de dados 
-            String url = "jdbc:mysql://localhost:3306/db_metrostyle"; 
+            String url = "jdbc:mysql://localhost:3306/db_testeRodrigo"; 
             //Retorno o objeto de conexão 
-            return DriverManager.getConnection(url,"root","#pedro56#");
+            return DriverManager.getConnection(url,"root","");
         }
         catch(SQLException ex) { 
             //Registro o erro no log do tomcat 

@@ -1,6 +1,9 @@
 package com.metrostyle.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -15,8 +18,9 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import com.metrostyle.dao.ProdutoDAO;
 import com.metrostyle.models.Produto;
+import com.metrostyle.utils.ConnectionFactory;
 
-@WebServlet(name = "produtos", urlPatterns = {"/produtos", "/produtos/novo", "/produtos/editar", "/produtos/excluir", "/produtos/update"})
+@WebServlet(name = "produtos", urlPatterns = {"/produtos", "/produtos/novo", "/produtos/excluir", "/produtos/update"})
 public class ProdutoController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +28,6 @@ public class ProdutoController extends HttpServlet {
 
     // Constantes para rotas
     private static final String ROTA_NOVO = "/produtos/novo";
-    private static final String ROTA_EDITAR = "/produtos/editar";
     private static final String ROTA_EXCLUIR = "/produtos/excluir";
     private static final String ROTA_UPDATE = "/produtos/update";
 
@@ -53,6 +56,15 @@ public class ProdutoController extends HttpServlet {
                     if ("POST".equalsIgnoreCase(request.getMethod())) {
                         salvar(request, response);
                     }
+                    break;
+                case ROTA_UPDATE:
+                    atualizar(request, response);
+                    break;
+                case ROTA_EXCLUIR:
+                    excluir(request, response);
+                    break;
+                default:
+                    listar(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -86,4 +98,53 @@ public class ProdutoController extends HttpServlet {
         // Redireciona para a lista após salvar
         response.sendRedirect(request.getContextPath() + "/produtos");
     }
+
+    // Método para buscar um produto pelo ID
+    public Produto buscarPorId(int id) throws SQLException {
+        Produto produto = null;
+        String sql = "SELECT * FROM tb_produtos WHERE id_produto = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                produto = new Produto();
+                produto.setId(rs.getInt("id_produto"));
+                produto.setMarca(rs.getString("marca"));
+                produto.setDesc(rs.getString("descricao"));
+                produto.setValor(rs.getDouble("valor"));
+            }
+        }
+        return produto; // Retorna null se não encontrar o produto
+    }
+
+    // Método para atualizar um produto existente
+    private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String marca = request.getParameter("marca");
+        String descricao = request.getParameter("descricao");
+        double valor = Double.parseDouble(request.getParameter("valor"));
+
+
+        Produto produto = new Produto();
+        produto.setId(id);
+        produto.setMarca(marca);
+        produto.setDesc(descricao);
+        produto.setValor(valor);
+
+        produtoDAO.atualizar(produto);
+
+        response.sendRedirect(request.getContextPath() + "/produtos");
+    }
+
+    // Método para excluir um produto
+    private void excluir(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        if (produtoDAO.excluir(id)) {
+            response.sendRedirect(request.getContextPath() + "/produtos");
+        } else {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, "Erro ao excluir produto.");
+        }
+    }
+
 }
