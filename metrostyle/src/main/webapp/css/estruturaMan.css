@@ -334,11 +334,11 @@ tbody tr:hover {
     background-color: #007bff; /* Cor mais escura no hover */
 }
 
-.btn-itens:nth-of-type(2) {
+#excluir {
     background-color: #dc3545; /* Vermelho para "Excluir" */
 }
 
-.btn-itens:nth-of-type(2):hover {
+#excluir:hover {
     background-color: #a71d2a; /* Cor mais escura para hover */
 }
 

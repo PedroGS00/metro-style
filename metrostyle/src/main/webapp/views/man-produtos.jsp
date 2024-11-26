@@ -45,23 +45,25 @@
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
 			</div>
 
-			<form action="${pageContext.request.contextPath}/produtos/update" method="post"> 
-				<input id="id_produto" type="hidden" name="id">
+			<div class="manutencao-form">
+				<form action="${pageContext.request.contextPath}/produtos/update" method="post"> 
+					<input id="id_produto" type="hidden" name="id">
 
-				<label for="marca">Marca:</label><br> 
-				<input id="marca" type="text" name="marca">
-				<br>
+					<label for="marca">Marca:</label><br> 
+					<input id="marca" type="text" name="marca">
+					<br>
 
-				<label for="descricao">Descrição:</label><br> 
-				<input id="descricao" type="text" name="descricao">
-				<br>
+					<label for="descricao">Descrição:</label><br> 
+					<input id="descricao" type="text" name="descricao">
+					<br>
 
-				<label for="valor">Valor:</label><br> 
-				<input id="valor" type="text" name="valor">
-				<br><br>
+					<label for="valor">Valor:</label><br> 
+					<input id="valor" type="text" name="valor">
+					<br><br>
 
-				<input type="submit" value="Atualizar">  
-			</form>
+					<input type="submit" value="Atualizar">  
+				</form>
+			</div>
 
 		</div>
 	</div>
@@ -111,7 +113,7 @@
 					</thead>
 		            <tbody>
 						<!-- Exemplo -->
-						<!-- <tr>
+						<%-- <tr>
 							<td>1</td>
 							<td>Nike</td>
 							<td>Tênis Casual AirMax 90</td>
@@ -119,9 +121,9 @@
 							<td> 
 								<button class="btn-itens">Editar</button>
 
-								<button class="btn-itens">Excluir</button>
+								<button id="excluir" class="btn-itens">Excluir</button>
 							</td>
-						</tr> -->
+						</tr> --%>
 		                <c:forEach var="produto" items="${listaProdutos}">
 		                    <tr>
 		                        <td>${produto.id}</td>
@@ -131,7 +133,7 @@
 		                        <td> 
 								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.marca}', '${produto.desc}', ${produto.valor})">Editar</button>
 
-								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
+								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
 								</td>
 		                    </tr>
 		                </c:forEach>

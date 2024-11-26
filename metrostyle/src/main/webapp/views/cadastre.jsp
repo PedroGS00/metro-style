@@ -37,7 +37,7 @@
                             <input type="text" name="cadastro" placeholder="E-mail" required>
                             <input type="password" name="senha" placeholder="Senha" required>
                         </div>
-                        <input type="submit" value="ENTRAR">
+                        <input type="submit" value="CADASTRAR">
             
                         <div class="custom-checkbox">
                             <input type="checkbox" name="terms"> Concordo com os Termos de Serviço e a Política de Privacidade

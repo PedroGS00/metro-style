@@ -18,23 +18,26 @@
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivCAD()"></p>
 			</div>
 
-		    <form action="${pageContext.request.contextPath}/clientes/novo" method="post"> 
-		        <input type="hidden" name="id" value="${cliente.getId()}"> 
-		
-		       	<label for="nome">Nome:</label><br> 
-		        <input type="text" name="nome" value="${cliente.getNome()}">
-		        <br>
-		        
-		        <label for="user">Nome de Usuário:</label><br> 
-		        <input type="text" name="user" value="${cliente.getUser()}">
-		        <br>
-		        
-		        <label for="senha">Senha:</label><br> 
-		        <input type="text" name="senha" value="${cliente.getSenha()}">
-		        <br><br>
-		        
-		        <input type="submit" value="Salvar"> 
-    		</form>
+			<div class="manutencao-form">
+				<form action="${pageContext.request.contextPath}/clientes/novo" method="post"> 
+					<input type="hidden" name="id" value="${cliente.getId()}"> 
+			
+					<label for="nome">Nome:</label><br> 
+					<input type="text" name="nome" value="${cliente.getNome()}">
+					<br>
+					
+					<label for="user">Nome de Usuário:</label><br> 
+					<input type="text" name="user" value="${cliente.getUser()}">
+					<br>
+					
+					<label for="senha">Senha:</label><br> 
+					<input type="text" name="senha" value="${cliente.getSenha()}">
+					<br><br>
+					
+					<input type="submit" value="Salvar"> 
+				</form>
+			</div>
+
 		</div>
 	</div>
 
@@ -43,24 +46,26 @@
 			<div class="fechar-tela-edit">
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
 			</div>
+			<div class="manutencao-form">
+				<form action="${pageContext.request.contextPath}/clientes/update" method="post"> 
+					<input id="id_cliente" type="hidden" name="id">
 
-			<form action="${pageContext.request.contextPath}/clientes/update" method="post"> 
-				<input id="id_cliente" type="hidden" name="id">
+					<label for="nome">Nome:</label><br> 
+					<input id="nome" type="text" name="nome">
+					<br>
 
-				<label for="nome">Nome:</label><br> 
-				<input id="nome" type="text" name="nome">
-				<br>
+					<label for="user">Nome de Usuário:</label><br> 
+					<input id="user" type="text" name="user">
+					<br>
 
-				<label for="user">Nome de Usuário:</label><br> 
-				<input id="user" type="text" name="user">
-				<br>
+					<label for="senha">Senha:</label><br> 
+					<input id="senha" type="text" name="senha">
+					<br><br>
 
-				<label for="senha">Senha:</label><br> 
-				<input id="senha" type="text" name="senha">
-				<br><br>
+					<input type="submit" value="Atualizar">  
+				</form>			
+			</div>
 
-				<input type="submit" value="Atualizar">  
-			</form>
 
 		</div>
 	</div>
@@ -110,7 +115,7 @@
 					</thead>
 		            <tbody>
 						<!-- Exemplo -->
-						<!-- <tr>
+						<%-- <tr>
 							<td>1</td>
 							<td>Rodrigo Pires</td>
 							<td>rodrigo.pires123</td>
@@ -118,19 +123,19 @@
 							<td> 
 								<button class="btn-itens">Editar</button>
 
-								<button class="btn-itens">Excluir</button>
+								<button id="excluir" class="btn-itens">Excluir</button>
 							</td>
-						</tr> -->
-		                <c:forEach var="cliente" items="${listaclientes}">
+						</tr> --%>
+		                <c:forEach var="cliente" items="${listaClientes}">
 		                    <tr>
 		                        <td>${cliente.id}</td>
 		                        <td>${cliente.nome}</td>
 		                        <td>${cliente.user}</td>
 		                        <td>${cliente.senha}</td>
 		                        <td> 
-								    <button class="btn-itens" onclick="abrirDivEDIT(${cliente.id}, '${cliente.nome}', '${cliente.user}', ${cliente.senha})">Editar</button>
+								    <button class="btn-itens" onclick="abrirDivEDIT_Cli(${cliente.id}, '${cliente.nome}', '${cliente.user}', '${cliente.senha}')">Editar</button>
 
-								    <a href="${pageContext.request.contextPath}/clientes/excluir?id=${cliente.id}"><button class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</button></a>
+								    <a href="${pageContext.request.contextPath}/clientes/excluir?id=${cliente.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</button></a>
 								</td>
 		                    </tr>
 		                </c:forEach>
