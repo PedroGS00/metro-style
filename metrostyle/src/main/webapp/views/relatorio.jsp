@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,9 +19,7 @@
 				</div>
 
 				<div class="manutencao-form">
-					<form action="${pageContext.request.contextPath}/clientes/novo" method="post"> 
-						<input type="hidden" name="id" value="${cliente.getId()}"> 
-				
+					<form method="post"> 				
 						<label for="nome">Nome:</label><br> 
 						<input type="text" name="nome" value="${cliente.getNome()}">
 						<br>
@@ -75,8 +74,9 @@
 					<table class="content-tabela" border="1" cellspacing="0" cellpadding="5">
 						<thead>
 							<tr>
+								<th>Id do Item da Venda</th> 
 								<th>Id da Venda</th>
-								<th>Id do Produto</th>
+								<th>Produto</th>
 								<th>Data da Venda</th>
 								<th>Quantidade</th>
 								<th>Valor Total</th>
@@ -86,13 +86,15 @@
 						<tbody>
 							<c:forEach var="relatorio" items="${listaRelatorio}">
 								<tr>
+									<td>${relatorio.id_item_venda}</td>
 									<td>${relatorio.id_venda}</td>
-									<td>${relatorio.id_produto}</td>
+									<td>${relatorio.produto_nome}</td>
 									<td>${relatorio.data_venda}</td>
 									<td>${relatorio.quantidade}</td>
-									<td>${relatorio.valor_total}</td>
-									<td> 
-										<button class="btn-itens" onclick="abrirDetalhes_Relatorio(${relatorio.id_venda}, ${relatorio.id_cliente} ,${relatorio.id_produto}, '${relatorio.data_venda}', ${relatorio.quantidade}, ${relatorio.preco_unitario}, ${relatorio.subtotal}, ${relatorio.valor_total})">Exibir Detalhes</button>
+									<td>R$ ${relatorio.valor_total}</td>
+									<td>
+										<button class="btn-itens" 
+												onclick="abrirDetalhes_Relatorio(${relatorio.id_venda}, ${relatorio.id_cliente}, ${relatorio.id_produto}, '${relatorio.data_venda}', ${relatorio.quantidade}, ${relatorio.preco_unitario}, ${relatorio.subtotal}, ${relatorio.valor_total})">Exibir Detalhes</button>
 									</td>
 								</tr>
 							</c:forEach>

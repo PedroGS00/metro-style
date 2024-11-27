@@ -1,9 +1,6 @@
 package com.metrostyle.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -17,19 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import com.metrostyle.dao.RelatorioDAO;
-import com.metrostyle.models.Produto;
 import com.metrostyle.models.Relatorio;
-import com.metrostyle.utils.ConnectionFactory;
 
 @WebServlet(name = "relatorios", urlPatterns = {"/relatorios", "/relatorios/novo"})
-
 public class RelatorioController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private RelatorioDAO relatorioDAO;
-
-    // Constantes para rotas
-    private static final String ROTA_NOVO = "/relatorios/novo";
 
     public RelatorioController() {
         this.relatorioDAO = new RelatorioDAO();
@@ -52,7 +43,7 @@ public class RelatorioController extends HttpServlet {
                 case "/relatorios":
                     listar(request, response);
                     break;
-                case ROTA_NOVO:
+                case "/relatorios/novo":
                     if ("POST".equalsIgnoreCase(request.getMethod())) {
                         salvar(request, response);
                     }
@@ -67,7 +58,6 @@ public class RelatorioController extends HttpServlet {
         }
     }
 
-    // Método para listar todos os relatorio
     private void listar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         ArrayList<Relatorio> listaRelatorio = relatorioDAO.listar();
         request.setAttribute("listaRelatorio", listaRelatorio);
@@ -76,8 +66,6 @@ public class RelatorioController extends HttpServlet {
     }
 
     private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-
-        // Captura os dados do request
         int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));
         int id_produto = Integer.parseInt(request.getParameter("id_produto"));
         String data_venda = request.getParameter("data_venda");
@@ -86,7 +74,6 @@ public class RelatorioController extends HttpServlet {
         double subtotal = Double.parseDouble(request.getParameter("subtotal"));
         double valor_total = Double.parseDouble(request.getParameter("valor_total"));
 
-        // Cria e insere o relatório
         Relatorio relatorio = new Relatorio();
         relatorio.setId_cliente(id_cliente);
         relatorio.setId_produto(id_produto);
@@ -96,10 +83,8 @@ public class RelatorioController extends HttpServlet {
         relatorio.setSubtotal(subtotal);
         relatorio.setValor_total(valor_total);
 
-        // Salva no banco de dados
         relatorioDAO.inserir(relatorio);
 
-        // Redireciona para a lista após salvar
         response.sendRedirect(request.getContextPath() + "/relatorios");
     }
 }

@@ -133,7 +133,7 @@ form label {
     color: #444;
 }
 
-form input[type="text"] {
+form input[type="text"], #descricao, #descricao-cad {
     padding: 8px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -142,7 +142,13 @@ form input[type="text"] {
     transition: border-color 0.3s ease;
 }
 
-form input[type="text"]:focus {
+#descricao, #descricao-cad {
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: pre-wrap;
+    resize: none;
+}
+
+form input[type="text"]:focus, #descricao:focus {
     border-color: #444; /* Preto no foco */
 }
 

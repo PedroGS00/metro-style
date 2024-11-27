@@ -26,7 +26,7 @@
 					<br>
 					
 					<label for="descricao">Descrição:</label><br> 
-					<input type="text" name="descricao" value="${produto.getDesc()}">
+					<textarea name="descricao" id="descricao-cad" rows="6" cols="50" wrap="soft"></textarea>
 					<br>
 					
 					<label for="preco">Preço:</label><br> 
@@ -58,7 +58,7 @@
 					<br>
 
 					<label for="descricao">Descrição:</label><br> 
-					<input id="descricao" type="text" name="descricao">
+					<textarea name="descricao" id="descricao" rows="6" cols="50" wrap="soft"></textarea>
 					<br>
 
 					<label for="preco">Preço:</label><br> 
@@ -139,7 +139,7 @@
 		                        <td>${produto.id}</td>
 		                        <td>${produto.nome}</td>
 		                        <td>${produto.desc}</td>
-		                        <td>${produto.preco}</td>
+		                        <td>R$ ${produto.preco}</td>
 		                        <td>${produto.estoque}</td>
 		                        <td> 
 								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.nome}', '${produto.desc}', ${produto.preco}, '${produto.estoque}')">Editar</button>

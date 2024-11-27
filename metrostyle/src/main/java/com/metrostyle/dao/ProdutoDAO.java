@@ -72,6 +72,7 @@ public class ProdutoDAO {
             stmt.setString(2, produto.getDesc());
             stmt.setDouble(3, produto.getPreco());
             stmt.setInt(4, produto.getEstoque());
+            stmt.setInt(5, produto.getId());
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0; // Retorna true se a atualização for bem-sucedida
         }
