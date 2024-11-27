@@ -21,19 +21,23 @@
 				<form action="${pageContext.request.contextPath}/produtos/novo" method="post"> 
 					<input type="hidden" name="id" value="${produto.getId()}"> 
 			
-					   <label for="marca">Marca:</label><br> 
-					<input type="text" name="marca" value="${produto.getMarca()}">
+					<label for="nome">Nome:</label><br> 
+					<input type="text" name="nome" value="${produto.getMarca()}">
 					<br>
 					
 					<label for="descricao">Descrição:</label><br> 
 					<input type="text" name="descricao" value="${produto.getDesc()}">
 					<br>
 					
-					<label for="nome">Valor:</label><br> 
-					<input type="text" name="valor" value="${produto.getValor() != null? produto.getValor() : 0}">
+					<label for="preco">Preço:</label><br> 
+					<input type="text" name="preco" value="${produto.getPreco() != null? produto.getPreco() : 0}">
+					<br>
+
+					<label for="estoque">Estoque:</label><br> 
+					<input type="text" name="estoque" value="${produto.getEstoque() != null? produto.getEstoque() : 0}">
 					<br><br>
 					
-					<input type="submit" value="Salvar"> 
+					<input type="submit" value="Cadastrar">
 				</form>
 			</div>
 		</div>
@@ -49,19 +53,23 @@
 				<form action="${pageContext.request.contextPath}/produtos/update" method="post"> 
 					<input id="id_produto" type="hidden" name="id">
 
-					<label for="marca">Marca:</label><br> 
-					<input id="marca" type="text" name="marca">
+					<label for="nome">Nome:</label><br> 
+					<input id="nome" type="text" name="nome">
 					<br>
 
 					<label for="descricao">Descrição:</label><br> 
 					<input id="descricao" type="text" name="descricao">
 					<br>
 
-					<label for="valor">Valor:</label><br> 
-					<input id="valor" type="text" name="valor">
+					<label for="preco">Preço:</label><br> 
+					<input id="preco" type="text" name="preco">
+					<br>
+
+					<label for="estoque">Estoque:</label><br> 
+					<input id="estoque" type="text" name="estoque">
 					<br><br>
 
-					<input type="submit" value="Atualizar">  
+					<input type="submit" value="Salvar">  
 				</form>
 			</div>
 
@@ -105,9 +113,10 @@
 					<thead>
 						<tr>
 							<th>Id do Produto</th>
-							<th>Marca</th>
+							<th>Nome</th>
 							<th>Descrição</th>
-							<th>Valor</th>
+							<th>Preço</th>
+							<th>Estoque</th>
 							<th>Ações</th>
 						</tr>
 					</thead>
@@ -115,9 +124,10 @@
 						<!-- Exemplo -->
 						<%-- <tr>
 							<td>1</td>
-							<td>Nike</td>
 							<td>Tênis Casual AirMax 90</td>
+							<td>Tênis especifico para jogos!</td>
 							<td>R$ 789,90</td>
+							<td>50</td>
 							<td> 
 								<button class="btn-itens">Editar</button>
 
@@ -127,11 +137,12 @@
 		                <c:forEach var="produto" items="${listaProdutos}">
 		                    <tr>
 		                        <td>${produto.id}</td>
-		                        <td>${produto.marca}</td>
+		                        <td>${produto.nome}</td>
 		                        <td>${produto.desc}</td>
-		                        <td>${produto.valor}</td>
+		                        <td>${produto.preco}</td>
+		                        <td>${produto.estoque}</td>
 		                        <td> 
-								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.marca}', '${produto.desc}', ${produto.valor})">Editar</button>
+								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.nome}', '${produto.desc}', ${produto.preco}, '${produto.estoque}')">Editar</button>
 
 								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
 								</td>

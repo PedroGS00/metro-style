@@ -83,15 +83,17 @@ public class ProdutoController extends HttpServlet {
 
     // Método para salvar um novo produto
     private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        String marca = request.getParameter("marca");
+        String nome = request.getParameter("nome");
         String descricao = request.getParameter("descricao");
-        double valor = Double.parseDouble(request.getParameter("valor"));
+        double preco = Double.parseDouble(request.getParameter("preco"));
+        int estoque = Integer.parseInt(request.getParameter("estoque"));
 
         // Cria e insere o produto
         Produto produto = new Produto();
-        produto.setMarca(marca);
+        produto.setNome(nome);
         produto.setDesc(descricao);
-        produto.setValor(valor);
+        produto.setPreco(preco);
+        produto.setEstoque(estoque);
 
         produtoDAO.inserir(produto);
 
@@ -110,9 +112,10 @@ public class ProdutoController extends HttpServlet {
             if (rs.next()) {
                 produto = new Produto();
                 produto.setId(rs.getInt("id_produto"));
-                produto.setMarca(rs.getString("marca"));
+                produto.setNome(rs.getString("nome"));
                 produto.setDesc(rs.getString("descricao"));
-                produto.setValor(rs.getDouble("valor"));
+                produto.setPreco(rs.getDouble("preco"));
+                produto.setEstoque(rs.getInt("estoque"));
             }
         }
         return produto; // Retorna null se não encontrar o produto
@@ -121,17 +124,18 @@ public class ProdutoController extends HttpServlet {
     // Método para atualizar um produto existente
     private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
-        String marca = request.getParameter("marca");
+        String nome = request.getParameter("nome");
         String descricao = request.getParameter("descricao");
-        double valor = Double.parseDouble(request.getParameter("valor"));
-
+        double preco = Double.parseDouble(request.getParameter("preco"));
+        int estoque = Integer.parseInt(request.getParameter("estoque"));
 
         Produto produto = new Produto();
         produto.setId(id);
-        produto.setMarca(marca);
+        produto.setNome(nome);
         produto.setDesc(descricao);
-        produto.setValor(valor);
-
+        produto.setPreco(preco);
+        produto.setEstoque(estoque);
+        
         produtoDAO.atualizar(produto);
 
         response.sendRedirect(request.getContextPath() + "/produtos");

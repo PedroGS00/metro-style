@@ -16,10 +16,10 @@ public class ClienteDAO {
 		boolean retorno = false;
 		try {
 			conexao = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO tb_clientes (nome,user,senha) values(?,?,?)";
+			String sql = "INSERT INTO tb_clientes (nome,email,senha) values(?,?,?)";
 			PreparedStatement ps = conexao.prepareStatement(sql);
 			ps.setString(1, cliente.getNome());
-			ps.setString(2, cliente.getUser());
+			ps.setString(2, cliente.getEmail());
 			ps.setString(3, cliente.getSenha());
 			int linhasAfetadas = ps.executeUpdate();
 			if(linhasAfetadas >0) { retorno = true; }
@@ -45,13 +45,13 @@ public class ClienteDAO {
 			while (rs.next()) {
 				int id = rs.getInt("id_cliente");
 				String nome = rs.getString("nome");
-				String user = rs.getString("user");
+				String email = rs.getString("email");
 				String senha= rs.getString("senha");
 				
 				Cliente itemLista = new Cliente();
 				itemLista.setId(id);
 				itemLista.setNome(nome);
-				itemLista.setUser(user);
+				itemLista.setEmail(email);
 				itemLista.setSenha(senha);
 				clientes.add(itemLista);
 			}
@@ -65,11 +65,11 @@ public class ClienteDAO {
 	
 	// Método para atualizar um cliente
     public boolean atualizar(Cliente cliente) throws SQLException {
-        String sql = "UPDATE tb_clientes SET nome = ?, user = ?, senha = ? WHERE id_cliente = ?";
+        String sql = "UPDATE tb_clientes SET nome = ?, email = ?, senha = ? WHERE id_cliente = ?";
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, cliente.getNome());
-            stmt.setString(2, cliente.getUser());
+            stmt.setString(2, cliente.getEmail());
             stmt.setString(3, cliente.getSenha());
             stmt.setInt(4, cliente.getId());
             int linhasAfetadas = stmt.executeUpdate();

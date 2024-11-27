@@ -20,14 +20,16 @@ public class ProdutoDAO {
             ResultSet rs = preparedStatement.executeQuery(); 
             while (rs.next()) { 
                 int id = rs.getInt("id_produto");
-                String marca = rs.getString("marca"); 
+                String nome = rs.getString("nome"); 
                 String desc = rs.getString("descricao");
-                double valor = rs.getDouble("valor"); 
+                double preco = rs.getDouble("preco"); 
+                int estoque = rs.getInt("estoque"); 
                 Produto itemLista = new Produto(); 
                 itemLista.setId(id); 
-                itemLista.setMarca(marca);  
+                itemLista.setNome(nome);  
                 itemLista.setDesc(desc); 
-                itemLista.setValor(valor);
+                itemLista.setPreco(preco);
+                itemLista.setEstoque(estoque);;
                 produtos.add(itemLista); 
             } 
         } catch (SQLException e) { 
@@ -41,11 +43,12 @@ public class ProdutoDAO {
         boolean retorno = false; 
         try { 
             conexao = ConnectionFactory.getConnection(); 
-            String sql = "INSERT INTO tb_produtos (marca, descricao, valor) values(?, ?, ?)"; 
-            PreparedStatement ps = conexao.prepareStatement(sql); 
-            ps.setString(1, produto.getMarca()); 
-            ps.setString(2, produto.getDesc()); 
-            ps.setDouble(3, produto.getValor());
+            String sql = "INSERT INTO tb_produtos (nome, descricao, preco, estoque) values(?, ?, ?, ?)"; 
+            PreparedStatement ps = conexao.prepareStatement(sql);
+            ps.setString(1, produto.getNome());
+            ps.setString(2, produto.getDesc());
+            ps.setDouble(3, produto.getPreco());
+            ps.setInt(4, produto.getEstoque());
             int linhasAfetadas = ps.executeUpdate(); 
             if (linhasAfetadas > 0) { 
                 retorno = true; 
@@ -62,13 +65,13 @@ public class ProdutoDAO {
 
     // Método para atualizar um produto
     public boolean atualizar(Produto produto) throws SQLException {
-        String sql = "UPDATE tb_produtos SET marca = ?, descricao = ?, valor = ? WHERE id_produto = ?";
+        String sql = "UPDATE tb_produtos SET nome = ?, descricao = ?, preco = ?, estoque = ? WHERE id_produto = ?";
         try (Connection conn = ConnectionFactory.getConnection();
             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, produto.getMarca());
+            stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getDesc());
-            stmt.setDouble(3, produto.getValor());
-            stmt.setInt(4, produto.getId());
+            stmt.setDouble(3, produto.getPreco());
+            stmt.setInt(4, produto.getEstoque());
             int linhasAfetadas = stmt.executeUpdate();
             return linhasAfetadas > 0; // Retorna true se a atualização for bem-sucedida
         }

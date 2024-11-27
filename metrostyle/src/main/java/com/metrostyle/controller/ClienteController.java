@@ -84,13 +84,13 @@ public class ClienteController extends HttpServlet {
     // Método para salvar um novo cliente
     private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         String nome = request.getParameter("nome");
-        String user = request.getParameter("user");
+        String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
         // Cria e insere o cliente
         Cliente cliente = new Cliente();
         cliente.setNome(nome);
-        cliente.setUser(user);
+        cliente.setEmail(email);
         cliente.setSenha(senha);
 
         clienteDAO.inserir(cliente);
@@ -103,14 +103,14 @@ public class ClienteController extends HttpServlet {
     private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         int id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
-        String user = request.getParameter("user");
+        String email = request.getParameter("email");
         String senha = request.getParameter("senha");
 
 
         Cliente cliente = new Cliente();
         cliente.setId(id);
         cliente.setNome(nome);
-        cliente.setUser(user);
+        cliente.setEmail(email);
         cliente.setSenha(senha);
 
         clienteDAO.atualizar(cliente);

@@ -24,7 +24,7 @@
 				<div class="btn-nav">
 					<a href="${pageContext.request.contextPath}/produtos"><button>Manutenção de Produtos</button></a>
 					<a href="${pageContext.request.contextPath}/clientes"><button>Manutenção de Clientes</button></a>
-					<a href="${pageContext.request.contextPath}/views/relatorio.jsp"><button>Relatório de Vendas</button></a>
+					<a href="${pageContext.request.contextPath}/relatorios"><button>Relatório de Vendas</button></a>
 				</div>
 				<a href="${pageContext.request.contextPath}/views/login.jsp"><button id="sair">Sair</button></a>
 			</main>

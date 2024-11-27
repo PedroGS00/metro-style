@@ -3,7 +3,7 @@ package com.metrostyle.models;
 public class Cliente {
     private int id_cliente;
     private String nome;
-    private String user;
+    private String email;
     private String senha;
 
     public int getId() {
@@ -22,12 +22,12 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public String getUser() {
-        return user;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {

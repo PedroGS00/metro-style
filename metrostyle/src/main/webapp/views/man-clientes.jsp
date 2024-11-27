@@ -26,8 +26,8 @@
 					<input type="text" name="nome" value="${cliente.getNome()}">
 					<br>
 					
-					<label for="user">Nome de Usuário:</label><br> 
-					<input type="text" name="user" value="${cliente.getUser()}">
+					<label for="user">E-mail:</label><br> 
+					<input type="text" name="email" value="${cliente.getEmail()}">
 					<br>
 					
 					<label for="senha">Senha:</label><br> 
@@ -54,8 +54,8 @@
 					<input id="nome" type="text" name="nome">
 					<br>
 
-					<label for="user">Nome de Usuário:</label><br> 
-					<input id="user" type="text" name="user">
+					<label for="user">E-mail:</label><br> 
+					<input id="user" type="text" name="email">
 					<br>
 
 					<label for="senha">Senha:</label><br> 
@@ -108,7 +108,7 @@
 						<tr>
 							<th>Id do Cliente</th>
 							<th>Nome</th>
-							<th>Nome de Usuário</th>
+							<th>E-mail</th>
 							<th>Senha</th>
 							<th>Ações</th>
 						</tr>
@@ -118,7 +118,7 @@
 						<%-- <tr>
 							<td>1</td>
 							<td>Rodrigo Pires</td>
-							<td>rodrigo.pires123</td>
+							<td>rodrigo@gmail.com</td>
 							<td>12345</td>
 							<td> 
 								<button class="btn-itens">Editar</button>
@@ -130,10 +130,10 @@
 		                    <tr>
 		                        <td>${cliente.id}</td>
 		                        <td>${cliente.nome}</td>
-		                        <td>${cliente.user}</td>
+		                        <td>${cliente.email}</td>
 		                        <td>${cliente.senha}</td>
 		                        <td> 
-								    <button class="btn-itens" onclick="abrirDivEDIT_Cli(${cliente.id}, '${cliente.nome}', '${cliente.user}', '${cliente.senha}')">Editar</button>
+								    <button class="btn-itens" onclick="abrirDivEDIT_Cli(${cliente.id}, '${cliente.nome}', '${cliente.email}', '${cliente.senha}')">Editar</button>
 
 								    <a href="${pageContext.request.contextPath}/clientes/excluir?id=${cliente.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</button></a>
 								</td>
