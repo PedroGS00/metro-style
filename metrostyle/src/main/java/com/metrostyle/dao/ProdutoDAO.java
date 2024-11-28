@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.metrostyle.models.Produto;
 import com.metrostyle.utils.ConnectionFactory;
@@ -88,5 +89,25 @@ public class ProdutoDAO {
             return linhasAfetadas > 0; // Retorna true se a exclusão for bem-sucedida
         }
     }
+    
+    public List<Produto> getAllProdutos() {
+        List<Produto> produtos = new ArrayList<>();
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tb_Produtos");
+             ResultSet rs = stmt.executeQuery()) {
+            
+            while (rs.next()) {
+                Produto produto = new Produto();
+                produto.setId(rs.getInt("id_produto"));
+                produto.setNome(rs.getString("nome"));
+                produto.setPreco(rs.getDouble("preco"));
+                produtos.add(produto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return produtos;
+    }
+
 
 }
