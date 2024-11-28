@@ -14,20 +14,28 @@
         <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
     </head>
 
-    <!-- <%
-        if (request.getAttribute("falha") != null){
-            %>
-                <script type="text/javascript"> alert("<%=request.getAttribute("falha")%>")
-                </script>
-            <%
+    <%
+        String mensagem = (String) session.getAttribute("mensagem");
+        String tipoMensagem = (String) session.getAttribute("tipoMensagem");
+        if (mensagem != null && tipoMensagem != null) {
+    %>
+        <script>
+            alert('<%= mensagem %>');
+        </script>
+    <%
+            session.removeAttribute("mensagem");
+            session.removeAttribute("tipoMensagem");
         }
-    %> -->
+    %>
+
     <%
         // Desloga o usuário, invalidando a sessão
         session.invalidate();
     %>
 
+
     <body>
+
         <div class="sidebar">METRO STYLE</div>
         
         <div class="direita">
@@ -37,7 +45,8 @@
         
             <main>
                 <div class="cadastro-container">
-                   <form action="${pageContext.request.contextPath}/clientes/cadastrar" method="post">
+                   <form action="${pageContext.request.contextPath}/clientes/novo" method="post">
+                        <input type="hidden" name="origem" value="usuario">
                         <h2>Cadastre-se na Metro Style</h2>
                         <div class="cadastro-campo">
                             <input type="hidden" name="id" value="${cliente.getId()}"> 
@@ -50,7 +59,7 @@
                         <input type="submit" value="CADASTRAR">
             
                         <div class="custom-checkbox">
-                            <input type="checkbox" name="terms"> Concordo com os Termos de Serviço e a Política de Privacidade
+                            <input type="checkbox" name="terms" required> Concordo com os Termos de Serviço e a Política de Privacidade
                         </div>   
            
                         <div class="com-conta">

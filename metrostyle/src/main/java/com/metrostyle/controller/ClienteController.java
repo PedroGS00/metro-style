@@ -20,7 +20,7 @@ import com.metrostyle.dao.ClienteDAO;
 import com.metrostyle.models.Cliente;
 import com.metrostyle.utils.ConnectionFactory;
 
-@WebServlet(name = "clientes", urlPatterns = {"/clientes", "/clientes/novo", "/clientes/excluir", "/clientes/update", "/clientes/cadastrar"})
+@WebServlet(name = "clientes", urlPatterns = {"/clientes", "/clientes/novo", "/clientes/excluir", "/clientes/update"})
 public class ClienteController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -30,7 +30,6 @@ public class ClienteController extends HttpServlet {
     private static final String ROTA_NOVO = "/clientes/novo";
     private static final String ROTA_EXCLUIR = "/clientes/excluir";
     private static final String ROTA_UPDATE = "/clientes/update";
-    private static final String ROTA_CADASTRAR = "/clientes/cadastrar";
 
     public ClienteController() {
         this.clienteDAO = new ClienteDAO();
@@ -64,9 +63,6 @@ public class ClienteController extends HttpServlet {
                 case ROTA_EXCLUIR:
                     excluir(request, response);
                     break;
-                case ROTA_CADASTRAR:
-                    cadastrar(request, response);
-                    break;
                 default:
                     listar(request, response);
                     break;
@@ -86,40 +82,49 @@ public class ClienteController extends HttpServlet {
     }
 
     // Método para salvar um novo cliente
-    private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        String nome = request.getParameter("nome");
+    private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
         String email = request.getParameter("email");
+        String origem = request.getParameter("origem"); // Verifica de qual tela veio a requisição
+    
+        // Verificar se o e-mail já existe
+        if (clienteDAO.emailJaExiste(email)) {
+            String mensagemErro = "E-mail já cadastrado. Tente outro.";
+            request.getSession().setAttribute("mensagem", mensagemErro);
+            request.getSession().setAttribute("tipoMensagem", "erro");
+    
+            // Redirecionar para a tela correta com base na origem
+            if ("usuario".equals(origem)) {
+                response.sendRedirect(request.getContextPath() + "/views/cadastre.jsp");
+            } else if ("adm".equals(origem)) {
+                response.sendRedirect(request.getContextPath() + "/clientes");
+            }
+            return;
+        }
+    
+        // Caso o e-mail não exista, prossiga com a criação do cliente
+        String nome = request.getParameter("nome");
         String senha = request.getParameter("senha");
-
-        // Cria e insere o cliente
+    
         Cliente cliente = new Cliente();
         cliente.setNome(nome);
         cliente.setEmail(email);
         cliente.setSenha(senha);
-
+    
         clienteDAO.inserir(cliente);
-
-        // Redireciona para a lista após salvar
-        response.sendRedirect(request.getContextPath() + "/clientes");
+    
+        // Mensagem de sucesso
+        request.getSession().setAttribute("mensagem", "Cadastro realizado com sucesso!");
+        request.getSession().setAttribute("tipoMensagem", "sucesso");
+    
+        // Redirecionar após sucesso com base na origem
+        if ("usuario".equals(origem)) {
+            response.sendRedirect(request.getContextPath() + "/views/login.jsp");
+        } else if ("adm".equals(origem)) {
+            response.sendRedirect(request.getContextPath() + "/clientes");
+        }
     }
-
-    // Método para salvar um novo cliente
-    private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        String nome = request.getParameter("nome");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-
-        // Cria e insere o cliente
-        Cliente cliente = new Cliente();
-        cliente.setNome(nome);
-        cliente.setEmail(email);
-        cliente.setSenha(senha);
-
-        clienteDAO.inserir(cliente);
-
-        // Redireciona para a lista após salvar
-        response.sendRedirect(request.getContextPath() + "/views/login.jsp");
-    }
+    
+    
 
     // Método para atualizar um cliente existente
     private void atualizar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {

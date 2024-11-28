@@ -13,6 +13,20 @@
         <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
     </head>
 
+    <%
+        String mensagem = (String) session.getAttribute("mensagem");
+        String tipoMensagem = (String) session.getAttribute("tipoMensagem");
+        if (mensagem != null && tipoMensagem != null) {
+    %>
+        <script>
+            alert('<%= mensagem %>');
+        </script>
+    <%
+            session.removeAttribute("mensagem");
+            session.removeAttribute("tipoMensagem");
+        }
+    %>
+
     <body>
         <div class="sidebar">METRO STYLE</div>
     
@@ -32,7 +46,7 @@
                         <input type="submit" value="ENTRAR">
     
                         <div class="custom-checkbox">
-                            <input type="checkbox" name="terms"> Concordo com os Termos de Serviço e a Política de Privacidade
+                            <input type="checkbox" name="terms" required> Concordo com os Termos de Serviço e a Política de Privacidade
                         </div>               
     
                         <div class="sem-conta">

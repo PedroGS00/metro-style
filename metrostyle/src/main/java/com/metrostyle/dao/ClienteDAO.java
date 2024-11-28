@@ -108,6 +108,24 @@ public class ClienteDAO {
 			e.printStackTrace();
 		}
 		return cliente; 
-	}	
+	}
+	
+	public boolean emailJaExiste(String email) {
+		String sql = "SELECT COUNT(*) FROM tb_Clientes WHERE email = ?";
+		try (Connection connection = ConnectionFactory.getConnection();
+			PreparedStatement statement = connection.prepareStatement(sql)) {
+
+			statement.setString(1, email);
+			try (ResultSet resultSet = statement.executeQuery()) {
+				if (resultSet.next()) {
+					return resultSet.getInt(1) > 0; // Retorna true se encontrar registros
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false; // Retorna false em caso de erro ou ausência de registros
+	}
+
 
 }

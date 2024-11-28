@@ -5,7 +5,7 @@
 
 <div class="navbar">
 	<div>
-		.
+		<img id="logo-navbar" src="${pageContext.request.contextPath}/imgs/icon.png" alt="">
 	</div>
 	<div class="navbar-itens">
 		<a href="${pageContext.request.contextPath}/index.jsp">HOME</a>
