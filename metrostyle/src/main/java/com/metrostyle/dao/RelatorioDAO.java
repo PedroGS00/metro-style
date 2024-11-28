@@ -100,4 +100,43 @@ public class RelatorioDAO {
         return retorno;
     }
 
+    public ArrayList<Relatorio> filtrarPorData(String data) throws SQLException {
+        ArrayList<Relatorio> listaRelatorio = new ArrayList<>();
+    
+        // Ajuste na consulta SQL para filtrar por data
+        String sql = "SELECT iv.id_item_venda, v.id_venda, p.nome AS produto_nome, c.nome AS cliente_nome, c.email AS cliente_email, "
+                + "iv.quantidade, iv.preco_unitario, iv.subtotal, v.valor_total, v.data_venda "
+                + "FROM tb_Itens_Venda iv "
+                + "JOIN tb_Vendas v ON iv.id_venda = v.id_venda "
+                + "JOIN tb_Produtos p ON iv.id_produto = p.id_produto "
+                + "JOIN tb_Clientes c ON v.id_cliente = c.id_cliente "
+                + "WHERE v.data_venda = ?"; // Filtra pela data
+    
+        try (Connection connection = ConnectionFactory.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+    
+            statement.setString(1, data); // Define o parâmetro da data
+    
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Relatorio relatorio = new Relatorio();
+                    relatorio.setId_item_venda(resultSet.getInt("id_item_venda"));
+                    relatorio.setId_venda(resultSet.getInt("id_venda"));
+                    relatorio.setProduto_nome(resultSet.getString("produto_nome"));
+                    relatorio.setCliente_nome(resultSet.getString("cliente_nome"));
+                    relatorio.setCliente_email(resultSet.getString("cliente_email"));
+                    relatorio.setQuantidade(resultSet.getInt("quantidade"));
+                    relatorio.setPreco_unitario(resultSet.getDouble("preco_unitario"));
+                    relatorio.setSubtotal(resultSet.getDouble("subtotal"));
+                    relatorio.setValor_total(resultSet.getDouble("valor_total"));
+                    relatorio.setData_venda(resultSet.getString("data_venda"));
+    
+                    listaRelatorio.add(relatorio);
+                }
+            }
+        }
+    
+        return listaRelatorio;
+    }     
+
 }

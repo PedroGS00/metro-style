@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ page import="java.util.List"%>
+<%@ page import="com.metrostyle.dao.RelatorioDAO"%>
+<%@ page import="com.metrostyle.models.Relatorio"%>
+<%@ page import="java.util.ArrayList"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Metrô Style | Relatórios </title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/estruturaMan.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/css/relatorio.css">
 		<link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
 		
 	</head>
@@ -97,7 +104,28 @@
 				<div class="content">
 					<div class="cabecalho-lista">
 						<h2>Lista de Vendas</h2>
+						<form method="GET" action="<%= request.getContextPath() + "/relatorios" %>">
+							<div class="campo-pesquisa">
+								<label for="dataPesquisa">Filtro por Data:</label>
+								<input type="date" id="dataPesquisa" name="dataPesquisa" />
+								<button type="submit">Pesquisar</button>
+							</div>
+						</form>
 					</div>
+					<%
+						String data_venda_pesquisa = request.getParameter("data_venda_pesquisa");
+						ArrayList<Relatorio> listaRelatorio = new ArrayList<>();
+
+						if (data_venda_pesquisa != null && !data_venda_pesquisa.isEmpty()) {
+							// Chama o método de filtro no DAO
+							RelatorioDAO relatorioDAO = new RelatorioDAO();
+							listaRelatorio = relatorioDAO.filtrarPorData(data_venda_pesquisa); // Passando a data como parâmetro
+						} else {
+							// Se não for informada uma data, exibe todos os relatórios
+							RelatorioDAO relatorioDAO = new RelatorioDAO();
+							listaRelatorio = relatorioDAO.listar(); // Método listar sem filtro
+						}
+					%>
 					<table class="content-tabela" border="1" cellspacing="0" cellpadding="5">
 						<thead>
 							<tr>

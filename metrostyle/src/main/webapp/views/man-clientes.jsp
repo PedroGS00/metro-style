@@ -20,18 +20,18 @@
 
 			<div class="sobreTela-form">
 				<form action="${pageContext.request.contextPath}/clientes/novo" method="post"> 
-					<input type="hidden" name="id" value="${cliente.getId()}"> 
+					<input type="hidden" name="id" value="${cliente.getId()}" required> 
 			
 					<label for="nome">Nome:</label><br> 
-					<input type="text" name="nome" value="${cliente.getNome()}">
+					<input type="text" name="nome" value="${cliente.getNome()}" required>
 					<br>
 					
 					<label for="user">E-mail:</label><br> 
-					<input type="text" name="email" value="${cliente.getEmail()}">
+					<input type="text" name="email" value="${cliente.getEmail()}" required>
 					<br>
 					
 					<label for="senha">Senha:</label><br> 
-					<input type="text" name="senha" value="${cliente.getSenha()}">
+					<input type="text" name="senha" value="${cliente.getSenha()}" required>
 					<br><br>
 					
 					<input type="submit" value="Salvar"> 
@@ -51,15 +51,15 @@
 					<input id="id_cliente" type="hidden" name="id">
 
 					<label for="nome">Nome:</label><br> 
-					<input id="nome" type="text" name="nome">
+					<input id="nome" type="text" name="nome" required>
 					<br>
 
 					<label for="user">E-mail:</label><br> 
-					<input id="user" type="text" name="email">
+					<input id="user" type="text" name="email" required>
 					<br>
 
 					<label for="senha">Senha:</label><br> 
-					<input id="senha" type="text" name="senha">
+					<input id="senha" type="text" name="senha" required>
 					<br><br>
 
 					<input type="submit" value="Atualizar">  
@@ -133,9 +133,11 @@
 		                        <td>${cliente.email}</td>
 		                        <td>${cliente.senha}</td>
 		                        <td> 
-								    <button class="btn-itens" onclick="abrirDivEDIT_Cli(${cliente.id}, '${cliente.nome}', '${cliente.email}', '${cliente.senha}')">Editar</button>
+									<div id="btn-itens-linha">
+										<button class="btn-itens" onclick="abrirDivEDIT_Cli(${cliente.id}, '${cliente.nome}', '${cliente.email}', '${cliente.senha}')">Editar</button>
 
-								    <a href="${pageContext.request.contextPath}/clientes/excluir?id=${cliente.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</button></a>
+										<a href="${pageContext.request.contextPath}/clientes/excluir?id=${cliente.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este cliente?');">Excluir</button></a>
+									</div>
 								</td>
 		                    </tr>
 		                </c:forEach>

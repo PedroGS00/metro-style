@@ -33,42 +33,66 @@
 					<div class="mais-pop">
 						<h1>Produtos</h1>
 						<div class="lista-tenis">
-							<% for (Produto produto : produtos) { %>
-							<div class="box-tenis">
-						        <%
-						            // Condicional para verificar o nome do produto e atribuir a imagem correspondente
-						            String imagemProduto = "";
-						            if ("Tênis Nike Air Force 1 07 Masculino".equals(produto.getNome())) {
-						                imagemProduto = "Air_Force_1.avif";
-						            } else if ("Tênis Nike Air Max Dn".equals(produto.getNome())) {
-						                imagemProduto = "Air_Max_DN.png";
-						            } else if ("Tênis Nike Air Max Dn".equals(produto.getNome())) {
-						                imagemProduto = "Air_Max_DN.png";
-						            } else {
-						                imagemProduto = "default.png"; // Para outros produtos, você pode usar uma imagem padrão
-						            }
-						        %>
-						        <!-- Exibe a imagem do produto -->
-						        <img src="${pageContext.request.contextPath}/imgs/<%= imagemProduto %>" alt="<%= produto.getNome() %>">
-						        
-						        <div class="box-tenis-desc">
-						            <p id="nome"><%= produto.getNome() %></p>
-						            <p id="modelo">Casual</p>
-						            <p id="preco">R$ <%= produto.getPreco() %></p>
-						        </div>
-						        
-						        <div class="box-tenis-comprar">
-						            <form action="comprar" method="post">
-						                <input type="hidden" name="id_produto" value="<%= produto.getId() %>">
-						                <button type="submit">COMPRAR</button>
-						            </form>
-						        </div>
-						    </div>
-						<% } %>
-						
-							</div>
-						</div>
+							<%
+								// Inicializa um contador para rastrear os itens
+								int contador = 0;
+
+								for (Produto produto : produtos) {
+									// Se o contador for múltiplo de 4 e não for o primeiro item, fecha a lista atual
+									if (contador % 4 == 0 && contador != 0) {
+							%>
+										</div> <!-- Fecha a lista atual -->
+										<div class="lista-tenis"> <!-- Abre uma nova lista -->
+							<%
+									}
+							%>
+									<div class="box-tenis">
+										<%
+											// Condicional para verificar o nome do produto e atribuir a imagem correspondente
+											String imagemProduto = "";
+											if ("Tênis Nike Air Force 1 07 Masculino".equals(produto.getNome())) {
+												imagemProduto = "Air_Force_1.avif";
+											} 
+											else if ("Tênis Nike Air Max Dn Masculino".equals(produto.getNome())) {
+												imagemProduto = "Air_Max_DN.png";
+											} 
+											else if ("Tênis Nike Air Jordan 4 Travis Scott".equals(produto.getNome())) {
+												imagemProduto = "Air_Jordan_4_Travis_Scott.png";
+											} 
+											else if ("Tênis New Balance 1000 Masculino".equals(produto.getNome())) {
+												imagemProduto = "New_Balance_1000.jpeg";
+											} 
+											else {
+												imagemProduto = "default.png"; // Para outros produtos, usa uma imagem padrão
+											}
+										%>
+										<!-- Exibe a imagem do produto -->
+										<img src="${pageContext.request.contextPath}/imgs/<%= imagemProduto %>" alt="<%= produto.getNome() %>">
+										
+										<div class="box-tenis-desc">
+											<p id="nome"><%= produto.getNome() %></p>
+											<p id="modelo">Casual</p>
+											<p id="preco">R$ <%= produto.getPreco() %></p>
+										</div>
+										
+										<div class="box-tenis-comprar">
+											<form action="comprar" method="post">
+												<input type="hidden" name="id_produto" value="<%= produto.getId() %>">
+												<button type="submit">
+													ADICIONAR 
+													<img src="${pageContext.request.contextPath}/imgs/carrinho1.png" alt=""> 
+												</button>
+											</form>
+										</div>
+									</div>
+							<%
+									// Incrementa o contador
+									contador++;
+								}
+							%>
+						</div> <!-- Fecha a última lista -->
 					</div>
+				</div>
 			</main>
 		<jsp:include page="/includes/footer.jsp" />		
 		</div>

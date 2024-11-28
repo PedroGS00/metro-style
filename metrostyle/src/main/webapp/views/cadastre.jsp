@@ -1,5 +1,8 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.List"%>
+<%@ page import="com.metrostyle.dao.ClienteDAO"%>
+<%@ page import="com.metrostyle.models.Cliente"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,6 +22,10 @@
             <%
         }
     %> -->
+    <%
+        // Desloga o usuário, invalidando a sessão
+        session.invalidate();
+    %>
 
     <body>
         <div class="sidebar">METRO STYLE</div>
@@ -30,18 +37,21 @@
         
             <main>
                 <div class="cadastro-container">
-                   <form action="${pageContext.request.contextPath}/views/cadastro-response.jsp" method="post">
+                   <form action="${pageContext.request.contextPath}/clientes/cadastrar" method="post">
                         <h2>Cadastre-se na Metro Style</h2>
                         <div class="cadastro-campo">
-                            <input type="text" name="usuario" placeholder="Nome de Usuário" required>
-                            <input type="text" name="cadastro" placeholder="E-mail" required>
-                            <input type="password" name="senha" placeholder="Senha" required>
+                            <input type="hidden" name="id" value="${cliente.getId()}"> 
+                            <input type="text" name="nome" placeholder="Nome" value="${cliente.getNome()}" required>
+                                
+                            <input type="text" name="email" placeholder="E-mail" value="${cliente.getEmail()}" required>
+                                
+                            <input type="password" name="senha" placeholder="Senha" value="${cliente.getSenha()}" required>
                         </div>
                         <input type="submit" value="CADASTRAR">
             
                         <div class="custom-checkbox">
                             <input type="checkbox" name="terms"> Concordo com os Termos de Serviço e a Política de Privacidade
-                        </div>               
+                        </div>   
            
                         <div class="com-conta">
                             <p>Já tem uma conta? <a href="${pageContext.request.contextPath}/views/login.jsp">Login</a></p>

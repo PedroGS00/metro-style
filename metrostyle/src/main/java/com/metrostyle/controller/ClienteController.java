@@ -20,7 +20,7 @@ import com.metrostyle.dao.ClienteDAO;
 import com.metrostyle.models.Cliente;
 import com.metrostyle.utils.ConnectionFactory;
 
-@WebServlet(name = "clientes", urlPatterns = {"/clientes", "/clientes/novo", "/clientes/excluir", "/clientes/update"})
+@WebServlet(name = "clientes", urlPatterns = {"/clientes", "/clientes/novo", "/clientes/excluir", "/clientes/update", "/clientes/cadastrar"})
 public class ClienteController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -30,6 +30,7 @@ public class ClienteController extends HttpServlet {
     private static final String ROTA_NOVO = "/clientes/novo";
     private static final String ROTA_EXCLUIR = "/clientes/excluir";
     private static final String ROTA_UPDATE = "/clientes/update";
+    private static final String ROTA_CADASTRAR = "/clientes/cadastrar";
 
     public ClienteController() {
         this.clienteDAO = new ClienteDAO();
@@ -62,6 +63,9 @@ public class ClienteController extends HttpServlet {
                     break;
                 case ROTA_EXCLUIR:
                     excluir(request, response);
+                    break;
+                case ROTA_CADASTRAR:
+                    cadastrar(request, response);
                     break;
                 default:
                     listar(request, response);
@@ -97,6 +101,24 @@ public class ClienteController extends HttpServlet {
 
         // Redireciona para a lista após salvar
         response.sendRedirect(request.getContextPath() + "/clientes");
+    }
+
+    // Método para salvar um novo cliente
+    private void cadastrar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+        String nome = request.getParameter("nome");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+
+        // Cria e insere o cliente
+        Cliente cliente = new Cliente();
+        cliente.setNome(nome);
+        cliente.setEmail(email);
+        cliente.setSenha(senha);
+
+        clienteDAO.inserir(cliente);
+
+        // Redireciona para a lista após salvar
+        response.sendRedirect(request.getContextPath() + "/views/login.jsp");
     }
 
     // Método para atualizar um cliente existente

@@ -1,3 +1,5 @@
+/* Estrutura Navegação */
+
 @charset "UTF-8";
 
 *{
@@ -84,7 +86,7 @@ footer{
     left: 0;
     width: 70px;
     height: 100%;
-    background-color: #7a9ebb;
+    background-color: #4f80a8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -93,5 +95,13 @@ footer{
     font-weight: bold;
     font-size: 28px;
     letter-spacing: 30px;
-    color: black;
+    color: white;
+}
+
+.texto-login{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }

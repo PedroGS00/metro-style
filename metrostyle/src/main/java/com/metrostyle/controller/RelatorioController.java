@@ -59,11 +59,24 @@ public class RelatorioController extends HttpServlet {
     }
 
     private void listar(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
-        ArrayList<Relatorio> listaRelatorio = relatorioDAO.listar();
+        String dataPesquisa = request.getParameter("dataPesquisa"); // Obtém o parâmetro de data
+    
+        ArrayList<Relatorio> listaRelatorio;
+    
+        if (dataPesquisa != null && !dataPesquisa.isEmpty()) {
+            // Se a data for informada, filtra por data
+            listaRelatorio = relatorioDAO.filtrarPorData(dataPesquisa);
+        } else {
+            // Caso contrário, lista todos os relatórios
+            listaRelatorio = relatorioDAO.listar();
+        }
+    
+        // Passa a lista para a JSP
         request.setAttribute("listaRelatorio", listaRelatorio);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/relatorio.jsp");
         dispatcher.forward(request, response);
     }
+    
 
     private void salvar(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
         int id_cliente = Integer.parseInt(request.getParameter("id_cliente"));

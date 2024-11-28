@@ -88,4 +88,26 @@ public class ClienteDAO {
         }
     }
 
+	public Cliente autenticar(String email, String senha) {
+		Cliente cliente = null;
+		String sql = "SELECT * FROM tb_clientes WHERE email = ? AND senha = ?";
+		try (Connection conn = ConnectionFactory.getConnection();
+			 PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setString(1, email);
+			stmt.setString(2, senha);
+			try (ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					cliente = new Cliente();
+					cliente.setId(rs.getInt("id_cliente"));
+					cliente.setNome(rs.getString("nome"));
+					cliente.setEmail(rs.getString("email"));
+					cliente.setSenha(rs.getString("senha"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cliente; 
+	}	
+
 }

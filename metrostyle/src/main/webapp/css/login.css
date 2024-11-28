@@ -68,14 +68,16 @@ input[type="password"] {
 input[type="submit"] {
     margin: 15px;
     color: white;
-    background-color: #1a1818;
+    font-weight: bold;
+    background-color: #4f80a8;
+    border: 2.5px solid #98c3e6;
     width: 370px;
     height: 60px;
-    border: none;
 }
 
 input[type="submit"]:hover {
-    background-color: #555;
+    background-color: rgb(131, 130, 130);
+    border: 2.5px solid #ffffff;
     cursor: pointer;
 }
 

@@ -1,3 +1,5 @@
+/* Estrutura Manutenção */
+
 @charset "UTF-8";
 
 *{
@@ -349,3 +351,8 @@ tbody tr:hover {
     background-color: #a71d2a; /* Cor mais escura para hover */
 }
 
+#btn-itens-linha{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}

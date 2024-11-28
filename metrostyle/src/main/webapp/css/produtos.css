@@ -2,7 +2,7 @@ main{
     flex-grow: 1;
 }
 
-img{
+.box-tenis img{
     width: 100%;
     border-radius: 20px;
 }
@@ -65,6 +65,10 @@ img{
     color: white;
     font-size: 15px;
     font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
 
 .box-tenis-comprar button:hover{
@@ -72,7 +76,7 @@ img{
     border: 2.5px solid #ffffff;
     cursor: pointer;
 }
- 
+
 #nome{
     padding-top: 10px;
 }
@@ -84,4 +88,9 @@ img{
 #valor{
     font-weight: bolder;
     font-size: 20px;
+}
+
+.box-tenis-comprar img{
+    width: 20px;
+    border-radius: 0px;
 }

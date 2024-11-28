@@ -22,19 +22,19 @@
 					<input type="hidden" name="id" value="${produto.getId()}"> 
 			
 					<label for="nome">Nome:</label><br> 
-					<input type="text" name="nome" value="${produto.getMarca()}">
+					<input type="text" name="nome" value="${produto.getMarca()}" required>
 					<br>
 					
 					<label for="descricao">Descrição:</label><br> 
-					<textarea name="descricao" id="descricao-cad" rows="6" cols="50" wrap="soft"></textarea>
+					<textarea name="descricao" id="descricao-cad" rows="6" cols="50" wrap="soft" required></textarea>
 					<br>
 					
 					<label for="preco">Preço:</label><br> 
-					<input type="text" name="preco" value="${produto.getPreco() != null? produto.getPreco() : 0}">
+					<input type="text" name="preco" value="${produto.getPreco() != null? produto.getPreco() : 0}" required>
 					<br>
 
 					<label for="estoque">Estoque:</label><br> 
-					<input type="text" name="estoque" value="${produto.getEstoque() != null? produto.getEstoque() : 0}">
+					<input type="text" name="estoque" value="${produto.getEstoque() != null? produto.getEstoque() : 0}" required>
 					<br><br>
 					
 					<input type="submit" value="Cadastrar">
@@ -54,19 +54,19 @@
 					<input id="id_produto" type="hidden" name="id">
 
 					<label for="nome">Nome:</label><br> 
-					<input id="nome" type="text" name="nome">
+					<input id="nome" type="text" name="nome" required>
 					<br>
 
 					<label for="descricao">Descrição:</label><br> 
-					<textarea name="descricao" id="descricao" rows="6" cols="50" wrap="soft"></textarea>
+					<textarea name="descricao" id="descricao" rows="6" cols="50" wrap="soft" required></textarea>
 					<br>
 
 					<label for="preco">Preço:</label><br> 
-					<input id="preco" type="text" name="preco">
+					<input id="preco" type="text" name="preco" required>
 					<br>
 
 					<label for="estoque">Estoque:</label><br> 
-					<input id="estoque" type="text" name="estoque">
+					<input id="estoque" type="text" name="estoque" required>
 					<br><br>
 
 					<input type="submit" value="Salvar">  
@@ -142,9 +142,11 @@
 		                        <td>${produto.preco}</td>
 		                        <td>${produto.estoque}</td>
 		                        <td> 
-								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.nome}', '${produto.desc}', ${produto.preco}, '${produto.estoque}')">Editar</button>
+									<div id="btn-itens-linha">
+										<button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.nome}', '${produto.desc}', ${produto.preco}, '${produto.estoque}')">Editar</button>
 
-								    <a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
+								    	<a href="${pageContext.request.contextPath}/produtos/excluir?id=${produto.id}"><button id="excluir" class="btn-itens" onclick="return confirm('Tem certeza que deseja excluir este produto?');">Excluir</button></a>
+									</div>
 								</td>
 		                    </tr>
 		                </c:forEach>
