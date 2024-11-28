@@ -12,12 +12,12 @@
 	</head>
 <body>
 
-	<div class="manutencao-abrir">
-		<div class="manutencao-abrir-cadastro">
+	<div class="sobreTela-abrir">
+		<div class="sobreTela-abrir-cadastro">
 			<div class="fechar-tela-cad">
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivCAD()"></p>
 			</div>
-			<div class="manutencao-form">
+			<div class="sobreTela-form">
 				<form action="${pageContext.request.contextPath}/produtos/novo" method="post"> 
 					<input type="hidden" name="id" value="${produto.getId()}"> 
 			
@@ -43,13 +43,13 @@
 		</div>
 	</div>
 
-	<div class="manutencao-abrir">
-		<div class="manutencao-abrir-editar">
+	<div class="sobreTela-abrir">
+		<div class="sobreTela-abrir-editar">
 			<div class="fechar-tela-edit">
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
 			</div>
 
-			<div class="manutencao-form">
+			<div class="sobreTela-form">
 				<form action="${pageContext.request.contextPath}/produtos/update" method="post"> 
 					<input id="id_produto" type="hidden" name="id">
 
@@ -139,7 +139,7 @@
 		                        <td>${produto.id}</td>
 		                        <td>${produto.nome}</td>
 		                        <td>${produto.desc}</td>
-		                        <td>R$ ${produto.preco}</td>
+		                        <td>${produto.preco}</td>
 		                        <td>${produto.estoque}</td>
 		                        <td> 
 								    <button class="btn-itens" onclick="abrirDivEDIT_Prod(${produto.id}, '${produto.nome}', '${produto.desc}', ${produto.preco}, '${produto.estoque}')">Editar</button>

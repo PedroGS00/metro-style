@@ -12,33 +12,60 @@
 	</head>
 
 	<body>
-		<div class="manutencao-abrir">
-			<div class="manutencao-abrir-cadastro">
-				<div class="fechar-tela-cad">
-					<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivCAD()"></p>
+		<div class="sobreTela-abrir">
+			<div class="sobreTela-abrir-editar">
+				<div class="fechar-tela-edit">
+					<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
 				</div>
 
-				<div class="manutencao-form">
-					<form method="post"> 				
-						<label for="nome">Nome:</label><br> 
-						<input type="text" name="nome" value="${cliente.getNome()}">
+				<div class="sobreTela-form">
+					<form>
+						<label for="id_item_venda">ID Item Venda:</label> 
+						<input id="id_item_venda" type="text" name="id_item_venda" readonly>
 						<br>
-						
-						<label for="user">E-mail:</label><br> 
-						<input type="text" name="email" value="${cliente.getEmail()}">
+
+						<label for="id_venda">ID Venda:</label> 
+						<input id="id_venda" type="text" name="id_venda" readonly>
 						<br>
-						
-						<label for="senha">Senha:</label><br> 
-						<input type="text" name="senha" value="${cliente.getSenha()}">
-						<br><br>
-						
-						<input type="submit" value="Salvar"> 
+
+						<label for="id_cliente">ID Cliente:</label> 
+						<input id="id_cliente" type="text" name="id_cliente" readonly>
+						<br>						
+
+						<label for="cliente_nome">Cliente Nome:</label> 
+						<input id="cliente_nome" type="text" name="cliente_nome" readonly>
+						<br>
+
+						<label for="produto_nome">Produto Nome:</label> 
+						<input id="produto_nome" type="text" name="produto_nome" readonly>
+						<br>
+
+					</form>
+					<form>
+
+						<label for="preco_unitario">Preço Unitário:</label> 
+						<input id="preco_unitario" type="text" name="preco_unitario" readonly>
+						<br>
+
+						<label for="quantidade">Quantidade:</label> 
+						<input id="quantidade" type="text" name="quantidade" readonly>
+						<br>
+
+						<label for="subtotal">SubTotal:</label> 
+						<input id="subtotal" type="text" name="subtotal" readonly>
+						<br>
+
+						<label for="valor_total">Valor Total (ID Venda):</label> 
+						<input id="valor_total" type="text" name="valor_total" readonly><br>
+
+						<label for="data_venda">Data da Venda:</label>
+						<input id="data_venda" type="text" name="data_venda" readonly>
+						<br>
 					</form>
 				</div>
 
 			</div>
 		</div>
-		
 		<div class="sidebar">
 			<div class="header-sidebar">
 				<a href="${pageContext.request.contextPath}/index.jsp"><h2>Metrô Style</h2></a>
@@ -76,10 +103,9 @@
 							<tr>
 								<th>Id do Item da Venda</th> 
 								<th>Id da Venda</th>
-								<th>Produto</th>
-								<th>Data da Venda</th>
-								<th>Quantidade</th>
+								<th>Cliente</th>
 								<th>Valor Total</th>
+								<th>Data da Venda</th>
 								<th>Ações</th>
 							</tr>
 						</thead>
@@ -88,13 +114,14 @@
 								<tr>
 									<td>${relatorio.id_item_venda}</td>
 									<td>${relatorio.id_venda}</td>
-									<td>${relatorio.produto_nome}</td>
+									<td>${relatorio.cliente_nome}</td>
+									<td>${relatorio.valor_total}</td>
 									<td>${relatorio.data_venda}</td>
-									<td>${relatorio.quantidade}</td>
-									<td>R$ ${relatorio.valor_total}</td>
 									<td>
 										<button class="btn-itens" 
-												onclick="abrirDetalhes_Relatorio(${relatorio.id_venda}, ${relatorio.id_cliente}, ${relatorio.id_produto}, '${relatorio.data_venda}', ${relatorio.quantidade}, ${relatorio.preco_unitario}, ${relatorio.subtotal}, ${relatorio.valor_total})">Exibir Detalhes</button>
+												onclick="abrirDetalhes_Relatorio(${relatorio.id_item_venda}, ${relatorio.id_venda}, ${relatorio.id_venda}, '${relatorio.cliente_nome}', '${relatorio.produto_nome}', ${relatorio.preco_unitario}, ${relatorio.quantidade}, ${relatorio.subtotal}, ${relatorio.valor_total}, '${relatorio.data_venda}')">
+											Exibir Detalhes
+										</button>
 									</td>
 								</tr>
 							</c:forEach>
@@ -106,4 +133,6 @@
 			<jsp:include page="/includes/footer.jsp" />
 		</div>
 	</body>
+
+	<script src="${pageContext.request.contextPath}/js/sobreTela.js"></script>
 </html>

@@ -12,13 +12,13 @@
 	</head>
 <body>
 
-	<div class="manutencao-abrir">
-		<div class="manutencao-abrir-cadastro">
+	<div class="sobreTela-abrir">
+		<div class="sobreTela-abrir-cadastro">
 			<div class="fechar-tela-cad">
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivCAD()"></p>
 			</div>
 
-			<div class="manutencao-form">
+			<div class="sobreTela-form">
 				<form action="${pageContext.request.contextPath}/clientes/novo" method="post"> 
 					<input type="hidden" name="id" value="${cliente.getId()}"> 
 			
@@ -41,12 +41,12 @@
 		</div>
 	</div>
 
-	<div class="manutencao-abrir">
-		<div class="manutencao-abrir-editar">
+	<div class="sobreTela-abrir">
+		<div class="sobreTela-abrir-editar">
 			<div class="fechar-tela-edit">
 				<p><img src="${pageContext.request.contextPath}/imgs/x.png" alt="" onclick="fecharDivEDIT()"></p>
 			</div>
-			<div class="manutencao-form">
+			<div class="sobreTela-form">
 				<form action="${pageContext.request.contextPath}/clientes/update" method="post"> 
 					<input id="id_cliente" type="hidden" name="id">
 

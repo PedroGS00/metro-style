@@ -50,67 +50,54 @@ public class RelatorioDAO {
     // Alterando método inserir para refletir corretamente as inserções nas tabelas tb_Vendas e tb_Itens_Venda
     public boolean inserir(Relatorio relatorio) {
         boolean retorno = false;
-        Connection conexao = null;
-        PreparedStatement psVendas = null;
-        PreparedStatement psItensVenda = null;
 
-        try {
-            conexao = ConnectionFactory.getConnection();
+        // Recursos para conexão e statements
+        try (Connection conexao = ConnectionFactory.getConnection()) {
 
-            // Iniciar transação
-            conexao.setAutoCommit(false);
+            conexao.setAutoCommit(false); // Inicia a transação
 
-            // Inserir na tb_Vendas (informações gerais da venda)
+            // Inserção na tabela tb_Vendas
             String sqlVenda = "INSERT INTO tb_Vendas (id_cliente, data_venda, valor_total) VALUES (?, ?, ?)";
-            psVendas = conexao.prepareStatement(sqlVenda, PreparedStatement.RETURN_GENERATED_KEYS);
-            psVendas.setInt(1, relatorio.getId_cliente());  // Assumindo que getId_cliente() é fornecido
-            psVendas.setString(2, relatorio.getData_venda());
-            psVendas.setDouble(3, relatorio.getValor_total());
-            int linhasAfetadasVenda = psVendas.executeUpdate();
+            try (PreparedStatement psVendas = conexao.prepareStatement(sqlVenda, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            // Se a venda foi inserida com sucesso, obter o id_venda
-            if (linhasAfetadasVenda > 0) {
-                ResultSet rs = psVendas.getGeneratedKeys();
-                if (rs.next()) {
-                    int id_venda = rs.getInt(1);
+                psVendas.setInt(1, relatorio.getId_cliente());
+                psVendas.setString(2, relatorio.getData_venda());
+                psVendas.setDouble(3, relatorio.getValor_total());
+                int linhasAfetadasVenda = psVendas.executeUpdate();
 
-                    // Inserir na tb_Itens_Venda (detalhes dos itens da venda)
-                    String sqlItemVenda = "INSERT INTO tb_Itens_Venda (id_venda, id_produto, quantidade, preco_unitario, subtotal) VALUES (?, ?, ?, ?, ?)";
-                    psItensVenda = conexao.prepareStatement(sqlItemVenda);
-                    psItensVenda.setInt(1, id_venda);
-                    psItensVenda.setInt(2, relatorio.getId_produto());  // Certifique-se que id_produto é fornecido no objeto
-                    psItensVenda.setInt(3, relatorio.getQuantidade());
-                    psItensVenda.setDouble(4, relatorio.getPreco_unitario());
-                    psItensVenda.setDouble(5, relatorio.getSubtotal());
+                if (linhasAfetadasVenda > 0) {
+                    // Obtém o id gerado
+                    try (ResultSet rs = psVendas.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            int id_venda = rs.getInt(1);
 
-                    int linhasAfetadasItemVenda = psItensVenda.executeUpdate();
-                    if (linhasAfetadasItemVenda > 0) {
-                        retorno = true;
+                            // Inserção na tabela tb_Itens_Venda
+                            String sqlItemVenda = "INSERT INTO tb_Itens_Venda (id_venda, id_produto, quantidade, preco_unitario, subtotal) VALUES (?, ?, ?, ?, ?)";
+                            try (PreparedStatement psItensVenda = conexao.prepareStatement(sqlItemVenda)) {
+                                psItensVenda.setInt(1, id_venda);
+                                psItensVenda.setInt(2, relatorio.getId_produto());
+                                psItensVenda.setInt(3, relatorio.getQuantidade());
+                                psItensVenda.setDouble(4, relatorio.getPreco_unitario());
+                                psItensVenda.setDouble(5, relatorio.getSubtotal());
+
+                                int linhasAfetadasItemVenda = psItensVenda.executeUpdate();
+                                if (linhasAfetadasItemVenda > 0) {
+                                    retorno = true;
+                                }
+                            }
+                        }
                     }
                 }
+                conexao.commit(); // Confirma a transação
+            } catch (SQLException e) {
+                conexao.rollback(); // Reverte em caso de erro
+                throw e; // Relança a exceção para controle externo
             }
 
-            // Se tudo foi inserido corretamente, confirma a transação
-            conexao.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            try {
-                // Se algo deu errado, faz rollback
-                if (conexao != null) {
-                    conexao.rollback();
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-        } finally {
-            try {
-                if (psVendas != null) psVendas.close();
-                if (psItensVenda != null) psItensVenda.close();
-                if (conexao != null) conexao.setAutoCommit(true); // Retorna o comportamento normal
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return retorno;
     }
+
 }
