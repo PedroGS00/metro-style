@@ -2,6 +2,8 @@
 <%@ page import="java.util.List"%>
 <%@ page import="com.metrostyle.dao.ClienteDAO"%>
 <%@ page import="com.metrostyle.models.Cliente"%>
+<%@ page import="com.metrostyle.dao.CarrinhoDAO"%>
+<%@ page import="com.metrostyle.models.Carrinho"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,19 +15,53 @@
         <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
     </head>
 
-    <%
-        String mensagem = (String) session.getAttribute("mensagem");
-        String tipoMensagem = (String) session.getAttribute("tipoMensagem");
-        if (mensagem != null && tipoMensagem != null) {
-    %>
-        <script>
-            alert('<%= mensagem %>');
-        </script>
-    <%
-            session.removeAttribute("mensagem");
-            session.removeAttribute("tipoMensagem");
-        }
-    %>
+	<%
+	    // Verificar se já está logado
+	    Cliente clienteLogado = (Cliente) session.getAttribute("clienteLogado");
+	    if (clienteLogado != null) {
+	        // Obter o carrinho do cliente logado
+	        CarrinhoDAO carrinhoDAO = new CarrinhoDAO();
+	        Carrinho carrinho = carrinhoDAO.obterCarrinhoPorCliente(clienteLogado.getId());
+	        if (carrinho != null) {
+	            session.setAttribute("carrinho", carrinho);
+	        }
+	    }
+	
+	    // Exibir mensagens de erro ou sucesso se existirem
+	    String mensagem = (String) session.getAttribute("mensagem");
+	    String tipoMensagem = (String) session.getAttribute("tipoMensagem");
+	    if (mensagem != null && tipoMensagem != null) {
+	%>
+	    <script>
+	        alert('<%= mensagem %>');
+	    </script>
+	<%
+	        session.removeAttribute("mensagem");
+	        session.removeAttribute("tipoMensagem");
+	    }
+	%>
+	
+	<%
+	    String email = request.getParameter("email");
+	    String senha = request.getParameter("senha");
+	
+	    if (email != null && senha != null) {
+	        ClienteDAO clienteDAO = new ClienteDAO();
+	        Cliente cliente = clienteDAO.autenticar(email, senha);
+	
+	        if (email.equals("admin") && senha.equals("admin")) {
+	            response.sendRedirect("../adm-manutencao.jsp"); // Redireciona para a página de administração
+	        } else if (cliente != null) {
+	            session.setAttribute("clienteLogado", cliente); // Atribui o cliente à sessão
+	            response.sendRedirect("../index.jsp"); // Redireciona para a página inicial
+	        } else {
+	            out.println("<script type='text/javascript'>");
+	            out.println("alert('Credenciais inválidas. Tente novamente.');");
+	            out.println("</script>");
+	        }
+	    }
+	%>
+
 
     <body>
         <div class="sidebar">METRO STYLE</div>
@@ -61,27 +97,6 @@
                             <a href="#"><img src="${pageContext.request.contextPath}/imgs/facebook.png" alt="Facebook"></a>
                         </div>
                     </form>
-
-                    <%
-                        String email = request.getParameter("email");
-                        String senha = request.getParameter("senha");
-
-                        if (email != null && senha != null) {
-                            ClienteDAO clienteDAO = new ClienteDAO();
-                            Cliente cliente = clienteDAO.autenticar(email, senha);
-
-                            if (email.equals("admin") && senha.equals("admin")) {
-                                response.sendRedirect("../adm-manutencao.jsp"); // Redireciona para a página de administração
-                            } else if (cliente != null) {
-                                session.setAttribute("cliente", cliente); // Armazena o cliente na sessão
-                                response.sendRedirect("../index.jsp"); // Redireciona para a página inicial
-                            } else {
-                                out.println("<script type='text/javascript'>");
-                                out.println("alert('Credenciais inválidas. Tente novamente.');");
-                                out.println("</script>");
-                            }
-                        }
-                    %>
                 </div>
             </main>
     
