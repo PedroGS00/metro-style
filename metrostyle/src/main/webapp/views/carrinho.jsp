@@ -48,43 +48,43 @@
 			</header>
 			
 			<main>
-				<table class="content-tabela" border="1" cellspacing="0" cellpadding="5">
-				    <thead>
-				        <tr>
-				            <th>Nome do Produto</th>
-				            <th>Quantidade</th>
-				            <th>Preço Unitário</th>
-				            <th>Subtotal</th>
-				            <th>Ações</th>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <c:forEach var="item" items="${listaCarrinho}">
-				            <tr>
-				                <td>${item.nomeProduto}</td>
-				                <td>${item.quantidade}</td>
-				                <td>R$ ${item.preco_unitario}</td>
-				                <td>R$ ${item.subtotal}</td>
-				                <td>
-									<form action="${pageContext.request.contextPath}/carrinho/excluir" method="post">
-									    <input type="hidden" name="id_item_carrinho" value="${item.id_item_carrinho}" />
-									    <button type="submit">Remover</button>
-									</form>
-				                </td>
-				            </tr>
-				        </c:forEach>
-				    </tbody>
-				</table>
-				
-				<!-- Botão Comprar -->
-			    <div class="botao-compra">
-			        <form action="${pageContext.request.contextPath}/carrinho/comprar method="post">
-			            <!-- Se necessário, adicione um campo oculto com o ID do carrinho ou outras informações -->
-			            <button type="submit">Finalizar Compra</button>
-			        </form>
-			    </div>
-				
-			</main>
+    <!-- Tabela de Carrinho -->
+    <table class="content-tabela" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Nome do Produto</th>
+                <th>Quantidade</th>
+                <th>Preço Unitário</th>
+                <th>Subtotal</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="item" items="${listaCarrinho}">
+                <tr>
+                    <td>${item.nomeProduto}</td>
+                    <td>${item.quantidade}</td>
+                    <td>R$ ${item.preco_unitario}</td>
+                    <td>R$ ${item.subtotal}</td>
+                    <td>
+                        <form action="${pageContext.request.contextPath}/carrinho/excluir" method="post">
+                            <input type="hidden" name="id_item_carrinho" value="${item.id_item_carrinho}" />
+                            <button type="submit">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+
+    <!-- Botão de Finalizar Compra -->
+    <div class="botao-compra">
+        <form action="${pageContext.request.contextPath}/carrinho/comprar" method="post">
+            <button type="submit">Finalizar Compra</button>
+        </form>
+    </div>
+</main>
+
 			
 			<jsp:include page="/includes/footer.jsp" />
 		</div>

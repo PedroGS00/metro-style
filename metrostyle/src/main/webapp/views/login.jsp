@@ -62,6 +62,7 @@
 	    }
 	%>
 
+
     <body>
         <div class="sidebar">METRO STYLE</div>
     

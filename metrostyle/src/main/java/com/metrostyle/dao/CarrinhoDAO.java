@@ -20,9 +20,9 @@ public class CarrinhoDAO {
 	        // Verificar se o produto já está no carrinho
 	        sql = "SELECT id_item_carrinho, quantidade FROM tb_carrinho_itens WHERE id_carrinho = ? AND id_produto = ?";
 	        try (PreparedStatement psCheck = conexao.prepareStatement(sql)) {
-	            psCheck.setInt(1, carrinho.getId_carrinho());
+	            psCheck.setInt(1, carrinho.getId_carrinho()); // Verificar o carrinho do cliente
 	            psCheck.setInt(2, carrinho.getId_produto());
-	            
+
 	            try (ResultSet rs = psCheck.executeQuery()) {
 	                if (rs.next()) {
 	                    // Se o produto já existir, acumulamos a quantidade
@@ -35,7 +35,7 @@ public class CarrinhoDAO {
 	                    try (PreparedStatement psUpdate = conexao.prepareStatement(sql)) {
 	                        psUpdate.setInt(1, novaQuantidade);
 	                        psUpdate.setInt(2, idItemCarrinho);
-	                        
+
 	                        int linhasAfetadas = psUpdate.executeUpdate();
 	                        if (linhasAfetadas > 0) {
 	                            retorno = true;
@@ -49,7 +49,7 @@ public class CarrinhoDAO {
 	                        psInsert.setInt(2, carrinho.getId_produto());
 	                        psInsert.setInt(3, carrinho.getQuantidade());
 	                        psInsert.setDouble(4, carrinho.getPreco_unitario());
-	                        
+
 	                        int linhasAfetadas = psInsert.executeUpdate();
 	                        if (linhasAfetadas > 0) {
 	                            retorno = true;
@@ -58,11 +58,13 @@ public class CarrinhoDAO {
 	                }
 	            }
 	        }
+	        
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	    return retorno;
 	}
+
 	
 	public ArrayList<Carrinho> listar(int idCliente) {
 	    ArrayList<Carrinho> itensCarrinho = new ArrayList<>();
@@ -177,7 +179,64 @@ public class CarrinhoDAO {
 	    }
 	    return retorno;
 	}
+	
+	public void excluirTodos(int idCliente) throws SQLException {
+        String sql = "DELETE FROM tb_carrinho WHERE id_cliente = ?";
+        
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, idCliente);
+            stmt.executeUpdate();
+        }
+    }
+
+	public boolean criarCarrinhoParaCliente(int idCliente) {
+	    boolean retorno = false;
+	    String sql = "INSERT INTO tb_carrinho (id_cliente) VALUES (?)";
+	    try (Connection conn = ConnectionFactory.getConnection();
+	         PreparedStatement stmt = conn.prepareStatement(sql)) {
+	        stmt.setInt(1, idCliente);
+	        int linhasAfetadas = stmt.executeUpdate();
+	        retorno = linhasAfetadas > 0; // Retorna true se a inserção for bem-sucedida
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return retorno;
+	}
+	
+	// Verifica se o cliente já tem um carrinho
+	public int getCarrinhoIdByCliente(int idCliente) throws SQLException {
+	    String sql = "SELECT id_carrinho FROM tb_carrinho WHERE id_cliente = ?";
+	    try (Connection conn = ConnectionFactory.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setInt(1, idCliente);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            return rs.getInt("id_carrinho");
+	        }
+	    }
+	    return 0; // Retorna 0 caso o carrinho não exista
+	}
+
+	// Cria um novo carrinho para o cliente
+	public int criarCarrinho(int idCliente) throws SQLException {
+	    String sql = "INSERT INTO tb_carrinho (id_cliente) VALUES (?)";
+	    try (Connection conn = ConnectionFactory.getConnection();
+	         PreparedStatement ps = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+	        ps.setInt(1, idCliente);
+	        ps.executeUpdate();
+
+	        // Recupera o id do carrinho recém-criado
+	        ResultSet rs = ps.getGeneratedKeys();
+	        if (rs.next()) {
+	            return rs.getInt(1);
+	        }
+	    }
+	    return 0;
+	}
+
 
 
 
 }
+
+

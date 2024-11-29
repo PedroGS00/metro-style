@@ -13,25 +13,39 @@ public class ClienteDAO {
 	Connection conexao; 
 
 	public boolean inserir(Cliente cliente) {
-		boolean retorno = false;
-		try {
-			conexao = ConnectionFactory.getConnection();
-			String sql = "INSERT INTO tb_clientes (nome,email,senha) values(?,?,?)";
-			PreparedStatement ps = conexao.prepareStatement(sql);
-			ps.setString(1, cliente.getNome());
-			ps.setString(2, cliente.getEmail());
-			ps.setString(3, cliente.getSenha());
-			int linhasAfetadas = ps.executeUpdate();
-			if(linhasAfetadas >0) { retorno = true; }
-		} 
-		catch (SQLException e) {
-			e.printStackTrace();
-		} 
-		finally { 
-			//código omitido}
-		}
-		return retorno;
+	    boolean retorno = false;
+	    try {
+	        conexao = ConnectionFactory.getConnection();
+	        String sqlCliente = "INSERT INTO tb_clientes (nome,email,senha) values(?,?,?)";
+	        PreparedStatement psCliente = conexao.prepareStatement(sqlCliente, PreparedStatement.RETURN_GENERATED_KEYS); // Retorna o id do cliente inserido
+	        psCliente.setString(1, cliente.getNome());
+	        psCliente.setString(2, cliente.getEmail());
+	        psCliente.setString(3, cliente.getSenha());
+	        
+	        int linhasAfetadas = psCliente.executeUpdate();
+	        
+	        if (linhasAfetadas > 0) {
+	            // Recupera o ID gerado para o cliente
+	            ResultSet rs = psCliente.getGeneratedKeys();
+	            if (rs.next()) {
+	                int idCliente = rs.getInt(1);
+	                // Agora, cria o carrinho associado ao cliente
+	                String sqlCarrinho = "INSERT INTO tb_Carrinho (id_cliente) VALUES (?)";
+	                PreparedStatement psCarrinho = conexao.prepareStatement(sqlCarrinho);
+	                psCarrinho.setInt(1, idCliente);
+	                psCarrinho.executeUpdate();
+	                
+	                retorno = true;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally { 
+	        // código de fechamento da conexão
+	    }
+	    return retorno;
 	}
+
 	
 	public ArrayList<Cliente> listar() {
 		ArrayList<Cliente> clientes = new ArrayList<>();
@@ -126,6 +140,7 @@ public class ClienteDAO {
 		}
 		return false; // Retorna false em caso de erro ou ausência de registros
 	}
+	
 
 
 }

@@ -1,11 +1,29 @@
-main{
-	flex-grow: 1;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-left: 70px;
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;  
+    justify-content: flex-start;  
+    align-items: center;
+    margin-left: 70px;
 }
 
-table{
-	color: white;
+table {
+    color: white;
+    margin-bottom: 20px; 
+}
+
+.botao-compra button {
+    margin: 20px;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #4f80a8;
+    border: 2.5px solid #98c3e6;
+    color: white;
+    font-size: 15px;
+    font-weight: bolder;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
 }
