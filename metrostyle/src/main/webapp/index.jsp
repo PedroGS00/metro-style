@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="com.metrostyle.dao.ProdutoDAO"%>
 <%@ page import="com.metrostyle.models.Produto"%>
@@ -19,9 +19,9 @@
 
     <body>
 	    <%
-		// Recupera os produtos do banco
-		ProdutoDAO produtoDAO = new ProdutoDAO();
-		List<Produto> produtos = produtoDAO.getAllProdutos(); // Supondo que você tenha um método para pegar todos os produtos
+			// Recupera os produtos do banco
+			ProdutoDAO produtoDAO = new ProdutoDAO();
+			List<Produto> produtos = produtoDAO.getAllProdutos();
 		%>  
     	<div class="sidebar">METRO STYLE</div>
     
@@ -72,25 +72,34 @@
 										</div>
 										
 										<div class="box-tenis-comprar">
-											<form action="comprar" method="post">
-												<input type="hidden" name="id_produto" value="<%= produto.getId() %>">
-												<button type="submit">
-													ADICIONAR 
-													<img src="${pageContext.request.contextPath}/imgs/carrinho1.png" alt=""> 
-												</button>
+										    <form action="${pageContext.request.contextPath}/carrinho" method="post">
+											    <input type="hidden" name="id_produto" value="<%= produto.getId() %>">
+											    <button type="submit">
+											        ADICIONAR
+											        <img src="${pageContext.request.contextPath}/imgs/carrinho1.png" alt="">
+											    </button>
 											</form>
 										</div>
 									</div>
+									<%
+										String mensagem = (String) session.getAttribute("mensagem");
+								    	if (mensagem != null) {
+									%>
+									<script>
+							        alert('<%= mensagem %>');
+							    	</script>
+							    	<%
+							    	session.removeAttribute("mensagem");
+								        }
+							    	%>
 							<%
 									contador++; // Incrementa o contador
 								}
 							%>
-
 						</div>
 					</div>
 				</div>
 			</main>
-	
 			<jsp:include page="/includes/footer.jsp" />
 		</div>
     </body>

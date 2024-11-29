@@ -13,7 +13,15 @@
         <link rel="shortcut icon" type="imagex/png" href="${pageContext.request.contextPath}/imgs/icon.png">
     </head>
 
-    <%
+	<%
+        // Verificar se já está logado
+		Cliente clienteLogado = (Cliente) session.getAttribute("cliente");
+        if (clienteLogado != null) {
+            response.sendRedirect(request.getContextPath() + "/index.jsp"); // Redireciona para a página principal
+            return; // Impede que o restante do código no JSP seja executado
+        }
+        
+        // Exibir mensagens de erro ou sucesso se existirem
         String mensagem = (String) session.getAttribute("mensagem");
         String tipoMensagem = (String) session.getAttribute("tipoMensagem");
         if (mensagem != null && tipoMensagem != null) {

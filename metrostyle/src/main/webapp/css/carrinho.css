@@ -1,0 +1,11 @@
+main{
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 70px;
+}
+
+table{
+	color: white;
+}
