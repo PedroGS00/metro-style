@@ -88,11 +88,16 @@
 										</div>
 										
 										<div class="box-tenis-comprar">
+<<<<<<< HEAD
 											<form action="${pageContext.request.contextPath}/carrinho/novo" method="post">
 											    <input type="hidden" name="id_carrinho" value="<%= idCarrinho %>">
 											    <input type="hidden" name="id_produto" value="<%= produto.getId() %>">
 											    <input type="hidden" name="quantidade" value="1"> <!-- Defina uma quantidade padrão ou obtenha ela dinamicamente -->
 											    <input type="hidden" name="preco_unitario" value="<%= produto.getPreco() %>">
+=======
+										    <form action="${pageContext.request.contextPath}/carrinho" method="post">
+											    <input type="hidden" name="id_produto" value="<%= produto.getId() %>">
+>>>>>>> cf2de09a621f3afafc07e17047500b48701666de
 											    <button type="submit">
 											        ADICIONAR
 											        <img src="${pageContext.request.contextPath}/imgs/carrinho1.png" alt="">

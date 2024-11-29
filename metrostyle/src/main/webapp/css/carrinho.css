@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 main{
 	flex-grow: 1;
 	display: flex;
@@ -8,4 +9,16 @@ main{
 
 table{
 	color: white;
+=======
+main{
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 70px;
+}
+
+table{
+	color: white;
+>>>>>>> cf2de09a621f3afafc07e17047500b48701666de
 }
