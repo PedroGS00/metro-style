@@ -93,7 +93,7 @@ public class ProdutoDAO {
     public List<Produto> getAllProdutos() {
         List<Produto> produtos = new ArrayList<>();
         try (Connection conn = ConnectionFactory.getConnection();
-             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tb_Produtos");
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM tb_produtos");
              ResultSet rs = stmt.executeQuery()) {
             
             while (rs.next()) {

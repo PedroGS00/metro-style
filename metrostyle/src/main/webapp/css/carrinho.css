@@ -27,3 +27,9 @@ table {
     align-items: center;
     gap: 5px;
 }
+
+.botao-compra button:hover{
+    background-color: rgb(131, 130, 130);
+    border: 2.5px solid #ffffff;
+    cursor: pointer;
+}
